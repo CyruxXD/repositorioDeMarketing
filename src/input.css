@@ -1,0 +1,58 @@
+@tailwind base;                                                                     
+@tailwind components;                                                               
+@tailwind utilities;                                                                
+                                                                                    
+@layer components {                                                                 
+  .nav-link {                                                                       
+    @apply text-black dark:text-white hover:text-primary transition-all duration-300
+font-medium transform hover:-translate-y-1;                                         
+  }                                                                                 
+}                                                                                   
+
+
+            @layer components {
+                .purple-smoke-overlay {
+                    mix-blend-mode: screen;
+                    opacity: 0.6;
+                }
+                .dark .purple-smoke-overlay {
+                    mix-blend-mode: overlay;
+                    opacity: 0.4;
+                }
+                .nav-link 
+                {
+                @apply text-black 
+                dark:text-white 
+                    hover:text-primary 
+                    transition-all 
+                    duration-300 
+                    font-medium 
+                    transform 
+                    hover:-translate-y-1;
+                }
+            }
+            
+
+            /* barra ratable */
+
+            @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+            }
+
+            .animate-scroll {
+            animation: scroll 40s linear infinite;
+            }
+
+            /* paneles de servicio */
+
+            @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-400px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }

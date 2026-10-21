@@ -1,494 +1,1019 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Web Mark</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>VM PHOTOSMEDIA</title>
+    <link href="css/tailwind.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-<canvas id="iridescenceCanvas"
-    style="
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;"
-    ></canvas>
-
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#6D28D9",
-                        secondary: "#4C1D95",
-                        "background-light": "#F9FAFB",
-                        "background-dark": "#0F172A",
-                    },
-                    fontFamily: {
-                        display: ["'Playfair Display'", "serif"],
-                        sans: ["'Plus Jakarta Sans'", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem",
-                        "xl": "1rem",
-                        "2xl": "1.5rem",
-                        "3xl": "2.5rem",
-                    },
-                },
-            },
-        };
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-        }
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-        }
-
-        // barra de logos 
-
-        window.addEventListener("DOMContentLoaded", function () {
-
-        const track = document.getElementById("logo-track");
-
-        if (!track) return;
-
-        // duplicar logos
-        track.innerHTML += track.innerHTML;
-
-        let position = 0;
-        const speed = 0.5;
-
-        function animate() {
-            position -= speed;
-
-            if (position <= -track.scrollWidth / 3.6) {
-            position = 0;
+    <script defer>
+            
+            function toggleDarkMode() {
+                document.documentElement.classList.toggle('dark');
+            }
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('flex');
             }
 
-            track.style.transform = `translateX(${position}px)`;
+            // barra de logos 
 
-            requestAnimationFrame(animate);
-        }
+            window.addEventListener("DOMContentLoaded", function () {
 
-        animate();
+            const track = document.getElementById("logo-track");
+
+            if (!track) return;
+
+            // duplicar logos
+            track.innerHTML += track.innerHTML;
+
+            let position = 0;
+            const speed = 2.0;
+
+            function animate() {
+                position -= speed;
+
+                if (position <= -track.scrollWidth / 3.6) {
+                position = 0;
+                }
+
+                track.style.transform = `translateX(${position}px)`;
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+            });
+
+            // codigo para forzar autoplay en los videos
+
+            window.addEventListener("load", function () {
+        const videos = document.querySelectorAll("video");
+
+        videos.forEach(video => {
+            video.setAttribute("playsinline", "");
+            video.setAttribute("muted", "");
+            video.muted = true;
+
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {});
+            }
+            });
         });
 
-        // animacion del principios
+        // mesaje de whatssap para mas informacion
+        // panel 1
+        document.addEventListener("DOMContentLoaded", function() {
 
-        const canvas = document.getElementById("iridescenceCanvas");
-        const ctx = canvas.getContext("2d");
+        let numero = "50763202417";
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        document.querySelectorAll(".btn-wsp").forEach(boton => {
 
-        window.addEventListener("resize", () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+            boton.addEventListener("click", function() {
+
+                let servicio = this.dataset.servicio;
+
+                let mensaje = `Hola 👋, estoy interesado en el servicio de ${servicio}.
+    Quisiera mejorar mis redes sociales con contenido profesional (posts, reels e historias).
+    ¿Podrían enviarme información detallada y precios?`;
+
+                let url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+                window.open(url, "_blank", "noopener,noreferrer");
+
+            });
+
         });
 
-        let time = 0;
+    });
 
-        function drawIridescence() {
-        const w = canvas.width;
-        const h = canvas.height;
+    // panel 2
+        document.addEventListener("DOMContentLoaded", function() {
 
-        ctx.clearRect(0, 0, w, h);
+        let numero = "50763202417";
 
-        for (let y = 0; y < h; y += 5) {
-            const gradient = ctx.createLinearGradient(0, y, w, y);
-            gradient.addColorStop(0, `hsl(${(time + y) % 360}, 80%, 60%)`);
-            gradient.addColorStop(0.5, `hsl(${(time + 60 + y) % 360}, 80%, 60%)`);
-            gradient.addColorStop(1, `hsl(${(time + 120 + y) % 360}, 80%, 60%)`);
+        document.querySelectorAll(".btn-wsp1").forEach(boton => {
 
-            ctx.strokeStyle = gradient;
-            ctx.beginPath();
+            boton.addEventListener("click", function() {
 
-            for (let x = 0; x < w; x++) {
-            const wave = Math.sin((x * 0.014) + (time * 0.008)) * 20;
-            ctx.lineTo(x, y + wave);
+                let servicio = this.dataset.servicio;
+
+                let mensaje = `Hola 👋, estoy interesado en el servicio de ${servicio}.
+    Quisiera mejorar mis redes sociales con contenido profesional (posts, reels e historias).
+    ¿Podrían enviarme información detallada y precios?`;
+
+                let url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+                window.open(url, "_blank", "noopener,noreferrer");
+
+            });
+
+        });
+
+    });
+
+    // panel 3
+        document.addEventListener("DOMContentLoaded", function() {
+
+        let numero = "50763202417";
+
+        document.querySelectorAll(".btn-wsp2").forEach(boton => {
+
+            boton.addEventListener("click", function() {
+
+                let servicio = this.dataset.servicio;
+
+                let mensaje = `Hola 👋, estoy interesado en el servicio de ${servicio}.
+    Quisiera mejorar mis redes sociales con contenido profesional (posts, reels e historias).
+    ¿Podrían enviarme información detallada y precios?`;
+
+                let url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+                window.open(url, "_blank", "noopener,noreferrer");
+
+            });
+
+        });
+
+    });
+
+
+    //alerta de formulario
+
+    document.getElementById("miFormulario").addEventListener("submit", function(e) {
+        e.preventDefault(); // Evita que recargue
+
+        const form = e.target;
+        const data = new FormData(form);
+
+        fetch(form.action, {
+            method: "POST",
+            body: data,
+            headers: {
+                'Accept': 'application/json'
             }
-            ctx.stroke();
-        }
-
-        time += 1;
-        requestAnimationFrame(drawIridescence);
-        }
-
-        drawIridescence();
-
-    </script>
-<style type="text/tailwindcss">
-        @layer components {
-            .purple-smoke-overlay {
-                mix-blend-mode: screen;
-                opacity: 0.6;
+        })
+        .then(response => {
+            if (response.ok) {
+                Swal.fire({
+                    title: "Mensaje enviado",
+                    text: "Nos pondremos en contacto pronto.",
+                    icon: "success",
+                    confirmButtonColor: "#000"
+                });
+                form.reset();
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: "Hubo un problema al enviar el mensaje.",
+                    icon: "error"
+                });
             }
-            .dark .purple-smoke-overlay {
-                mix-blend-mode: overlay;
-                opacity: 0.4;
-            }
-            .nav-link {
-                @apply text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-200 font-medium;
-            }
+        })
+        .catch(() => {
+            Swal.fire({
+                title: "Error",
+                text: "No se pudo conectar con el servidor.",
+                icon: "error"
+            });
+        });
+    });
+
+    // paneles de servicios 
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+            const wrapper = document.getElementById("services-wrapper");
+
+            wrapper.style.opacity = "0";
+            wrapper.style.transform = "translateX(-200px)";
+            wrapper.style.transition = "all 1.4s cubic-bezier(0.22, 1, 0.36, 1)";
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        wrapper.style.opacity = "1";
+                        wrapper.style.transform = "translateX(-350px)";
+                    }
+                });
+            }, { 
+                threshold: 0.4   // ahora espera más scroll
+            });
+
+            observer.observe(wrapper);
+
+        });
+
+        // video de paneles de precios en mobil
+        const video = document.getElementById("bg-video");
+
+        if (window.innerWidth < 768) {
+        video.src = "recursos/video-mobile.mp4";
+        } else {
+        video.src = "recursos/video-desktop.mp4";
         }
-        :root {
-            --primary: #6D28D9;
-        }
 
-        /* barra ratable */
+        </script>
 
-        @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-        }
+    </head>
+    <body class="font-sans antialiased text-slate-900 bg-background-light dark:text-slate-100 dark:bg-background-dark transition-colors duration-300">
 
-        .animate-scroll {
-        animation: scroll 40s linear infinite;
-        }
-
-    </style>
-</head>
-<body class="font-sans antialiased text-slate-900 bg-background-light dark:text-slate-100 dark:bg-background-dark transition-colors duration-300">
-
-    <!-- navegador -->
-<nav class="fixed w-full z-50 bg-white/10 dark:bg-black/20 backdrop-blur-md border-b border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-20">
-<div class="flex items-center">
-<span class="text-2xl font-display font-bold text-primary tracking-tight">EMPRESA</span>
-</div>
-<div class="hidden md:flex items-center space-x-8">
-<a class="nav-link" href="#services">Servicio</a>
-<a class="nav-link" href="#work">Portfolio</a>
-<a class="nav-link" href="#about">Acerca</a>
-<div class="flex items-center pl-6 border-l border-slate-200 dark:border-slate-700 space-x-4">
-<button aria-label="Toggle Dark Mode" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
-<span class="material-symbols-outlined block dark:hidden">dark_mode</span>
-<span class="material-symbols-outlined hidden dark:block text-yellow-400">light_mode</span>
-</button>
-<button class="bg-primary text-white px-6 py-2.5 rounded-full hover:bg-secondary transition-all shadow-lg shadow-primary/20 font-medium">
-                            Contactanos
+        <!-- navegador -->
+        <nav class="fixed w-full z-50 bg-white/30 dark:!bg-black/40 backdrop-blur-md border-b transition-all duration-500 border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <div class="flex items-center">
+                        <a class="text-2xl font-display font-bold !text-black dark:!text-white tracking-tight" href="#inicio">VM PHOTOSMEDIA</a>
+                    </div>
+                    <div class="hidden text-black md:flex items-center space-x-8">
+                        <a class="nav-link" href="quienes somos.html">Quienes somos</a>
+                        <a class="nav-link" href="#services">Servicio</a>
+                        <a class="nav-link" href="#work">Planes</a>
+                        <a class="nav-link" href="#empresas">Empresas</a>
+                        <a class="nav-link text-lg py-2" href="https://vmphotosmedia.mypixieset.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnuNQBKwVnD61J27TxkKkEUDLMM9thL-3izgbkPEwvBAH1HCTdH-niTV25Bgo_aem_5l61qNeTUUm3rEdwx_dlNw"
+                            onclick="toggleMobileMenu()">Photografias</a>
+                        <div class="flex items-center pl-6 border-l border-slate-200 dark:border-slate-700 space-x-4">
+                            <button aria-label="Toggle Dark Mode" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
+                            <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                            <span class="material-symbols-outlined hidden dark:block text-yellow-400">light_mode</span>
+                            </button>
+                            <a href="#formulario"><button class="!bg-black dark:!bg-white !text-white dark:!text-black px-6 py-2.5 rounded-full hover:bg-black transition-all shadow-lg shadow-primary/20 font-medium">
+                                                CONTACTANOS
+                                                </button></a>
+                        </div>
+                    </div>
+                    <!-- meunu en telefono -->
+                    <div class="flex items-center md:hidden space-x-2">
+                        <button aria-label="Toggle Dark Mode" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
+                            <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                            <span class="material-symbols-outlined hidden dark:block text-yellow-400">light_mode</span>
                         </button>
-</div>
-</div>
-<div class="flex items-center md:hidden space-x-2">
-<button aria-label="Toggle Dark Mode" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
-<span class="material-symbols-outlined block dark:hidden">dark_mode</span>
-<span class="material-symbols-outlined hidden dark:block text-yellow-400">light_mode</span>
-</button>
-<button class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300" onclick="toggleMobileMenu()">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</div>
-</div>
-<div class="hidden absolute top-20 left-0 w-full bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 flex-col p-6 space-y-4 md:hidden animate-in slide-in-from-top duration-300" id="mobile-menu">
-<a class="nav-link text-lg py-2" href="#services" onclick="toggleMobileMenu()">Servicios</a>
-<a class="nav-link text-lg py-2" href="#work" onclick="toggleMobileMenu()">Portfolio</a>
-<a class="nav-link text-lg py-2" href="#about" onclick="toggleMobileMenu()">Acerca</a>
-<button class="w-full bg-primary text-white py-4 rounded-xl font-bold mt-4">Contactanos</button>
-</div>
-</nav>
+                        <button class="p-2 rounded-lg hover:!bg-black dark:hover:!bg-white !text-black dark:!text-white" onclick="toggleMobileMenu()">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden absolute top-20 left-0 w-full 
+                        !bg-white dark:!bg-black
+                        border-b border-slate-200 dark:border-slate-800 
+                        flex-col p-6 space-y-4 md:hidden 
+                        animate-in slide-in-from-top duration-300" 
+                        id="mobile-menu">
+                <a class="nav-link text-lg py-2" href="quienes somos.html" onclick="toggleMobileMenu()">Quienes somos</a>
+                <a class="nav-link text-lg py-2" href="#services" onclick="toggleMobileMenu()">Servicios</a>
+                <a class="nav-link text-lg py-2" href="#work" onclick="toggleMobileMenu()">Planes</a>
+                <a class="nav-link text-lg py-2" href="#empresas" onclick="toggleMobileMenu()">Empresas</a>
+                <a class="nav-link text-lg py-2" href="https://vmphotosmedia.mypixieset.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnuNQBKwVnD61J27TxkKkEUDLMM9thL-3izgbkPEwvBAH1HCTdH-niTV25Bgo_aem_5l61qNeTUUm3rEdwx_dlNw"
+                        onclick="toggleMobileMenu()">Photografias</a>
+                <a href="#formulario"><button class="w-full bg-black dark:!bg-white text-white dark:!text-black py-4 rounded-xl font-bold mt-4">Contactanos</button></a> 
+            </div>
+        </nav>
 
-<!-- video de vienbenida -->
-<section class=" relative min-h-screen lg:min-h-[120vh] item-start">
-    <div>
-        <video class="w-full h-full object-cover" autoplay muted loop playsinline 
-        src="recursos/INIICIO DE BIENVENIDA.mp4" ></video>
-    </div>
-</section>
+        <!-- inicio de la paguina -->
+        <section id="inicio" class="relative min-h-[90vh] md:min-h-[100vh] flex items-cente">
 
-<!-- fondo funny animacion -->
+                <div class="absolute inset-0 z-0 overflow-hidden 
+                    bg-cover bg-center">
 
-<div class="relative z-10">
-    <!-- contenido -->
-</div>
+                    <div class="absolute inset-0 z-0 overflow-hidden">
 
-<!-- inicio de la paguina -->
-<section class="relative min-h-screen lg:min-h-[120vh] flex items-start">
-    <div class="absolute inset-0 z-0 overflow-hidden">
 
-        <video
-            autoplay
-            muted
-            loop
-            playsinline
-            class="w-full h-full object-cover">
+                        <video
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="auto"
+                            class="absolute top-0 left-1/2 -translate-x-1/2 w-[100%] md:w-full h-full object-cover">
 
-            <source src="recursos/humo morado.mp4" type="video/mp4">
-        </video>
+                            <source src="recursos/humo morado.mp4" type="video/mp4">
+                        </video>
+                    </div>
 
-        <!-- Gradiente ORIGINAL para que el texto sea legible -->
-        <div class="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r 
-            from-background-light via-background-light/60 md:via-background-light/50 
-            to-transparent 
-            dark:from-background-dark dark:via-background-dark/60 md:dark:via-background-dark/50">
-        </div>
+                        <div class="absolute inset-0
+                            bg-gradient-to-r
+                            from-white/70 
+                            via-white/40 
+                            to-transparent
+                            dark:from-black/70 
+                            dark:via-black/50 
+                            dark:to-transparent">
+                        </div>
 
-    </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-48 md:mt-60">
-            <div class="max-w-3xl">
+                </div>
+                
 
-            <h1 class="text-5xl sm:text-6xl lg:text-8xl font-display font-bold leading-[1.05] mb-6 tracking-tight">
-                                Reinventa<br/>
-            <span class="italic text-primary">Tu Marca</span> <br/>
-                                En Las Redes.
-                            </h1>
-            <p class="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-lg leading-relaxed">
-                                Elevating luxury and lifestyle brands through high-end creative direction and precision-engineered social strategies.
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-60  md:mt-80">
+                    <div class="max-w-3xl">
+
+                    <h1 class="text-3xl sm:text-3xl lg:text-5xl font-display font-bold leading-[1.05] mb-6 tracking-tight">
+                        En
+                        <span class="text-white dark:!text-black tracking-tight drop-shadow-[0_6px_18px_rgba(0,0,0,0.75)] dark:!drop-shadow-[0_0_18px_rgba(255,255,255,0.8)]">VMPHOTOSMEDIA</span><br/>
+                        <span class="whitespace-nowrap">
+                            Creamos contenido <br/>para tu marca.
+                        </span>
+                    </h1>
+                    <p class="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-lg leading-relaxed">
+                                        Nos enfocamos en crear contenido de valor, pensado para vender, educar, atraer y conectar.
+                                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#formulario"><button class="px-8 py-4 bg-black text-white rounded-xl font-semibold hover:bg-secondary transition-all flex items-center justify-center group shadow-xl shadow-primary/25">
+                                                contactanos
+                                                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- paneles de servicios -->
+        <section class="py-20 md:py-32 transition-all duration-500 relative overflow-hidden" id="services">
+
+            <!-- imagen de fondo -->
+            <div class="absolute inset-0 -z-10 overflow-hidden">
+                <img src="recursos/nuestros servicios.jpg" alt="foto para fondo" 
+                    class="w-full h-full object-cover  scale-110 hover:scale-125 transition-transform duration-700">
+            </div>
+            
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-8">
+
+                    <div class="max-w-xl mx-auto text-center animate-[slideInLeft_1.4s_cubic-bezier(0.22,1,0.36,1)_forwards]">
+                        <h2 class="text-3xl md:text-5xl font-display font-bold mb-6 text-white">
+                            Nuestros Servicios
+                        </h2>
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                
+                    <!-- panel 1 -->
+                        <div class="aspect-auto p-8 rounded-2xl bg-background-light  
+                        shadow-[0_20px_40px_rgba(0,0,0,0.08),0_-10px_30px_rgba(0,0,0,0.04),10px_0_30px_rgba(0,0,0,0.04),-10px_0_30px_rgba(0,0,0,0.04)]
+                        dark:shadow-[0_25px_70px_rgba(255,255,255,0.4)]
+                        transition-all duration-500
+                        group
+                        hover:scale-105
+                        hover:-translate-y-2
+                        transform
+                        
+                        border border-white/40 dark:border-white/10
+                        backdrop-blur-md
+                        bg-black/30 dark:bg-black/10
+                        ">
+
+                            <h3 class="text-2xl font-bold mb-4 text-white dark:text-black">Gestión de redes sociales</h3>
+
+                            <p class="mb-6 text-white dark:text-black">
+                            Creamos y gestionamos tu contenido en posts, reels e historias, manteniendo una comunicación coherente y alineada a su rubro.
                             </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <button class="px-8 py-4 bg-primary text-white rounded-xl font-semibold hover:bg-secondary transition-all flex items-center justify-center group shadow-xl shadow-primary/25">
-                                        contactanos
-                                        <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                </button>
+
+                            <h4 class="font-semibold text-white dark:text-black mb-3">Contenido de valor y estrategia</h4>
+
+                            <ul class="space-y-3 text-sm leading-relaxed text-white dark:text-black">
+                            <li>• ¿Sabías que…? relacionados con tu negocio</li>
+                            <li>• Datos importantes y tips útiles para tu audiencia</li>
+                            <li>• Contenido pensado para atraer al cliente ideal y generar confianza</li>
+                            </ul>
+
+                        </div>
+
+                        <!-- panel 2 -->
+                        <div class="aspect-auto p-8 rounded-2xl bg-background-light  
+                        shadow-[0_20px_40px_rgba(0,0,0,0.08),0_-10px_30px_rgba(0,0,0,0.04),10px_0_30px_rgba(0,0,0,0.04),-10px_0_30px_rgba(0,0,0,0.04)]
+                        dark:shadow-[0_25px_70px_rgba(255,255,255,0.4)]
+                        transition-all duration-500
+                        group
+                        hover:scale-105
+                        hover:-translate-y-2
+                        transform
+                        
+                        border border-white/40 dark:border-white/10
+                        backdrop-blur-md
+                        bg-black/30 dark:bg-black/10
+                        ">
+
+                            <h3 class="text-2xl font-bold mb-6 text-white dark:text-black">Diseño e identidad visual</h3>
+
+                            <p class="mb-6 text-white dark:text-black">
+                            Creamos tus diseños o te ayudamos a estructurar la identidad visual de tu marca para que sea reconocible, coherente y profesional.
+                            </p>
+
+                        </div>
+
+                        <!-- panel 3 -->
+                        <div class="aspect-auto p-8 rounded-2xl bg-background-light  
+                        shadow-[0_20px_40px_rgba(0,0,0,0.08),0_-10px_30px_rgba(0,0,0,0.04),10px_0_30px_rgba(0,0,0,0.04),-10px_0_30px_rgba(0,0,0,0.04)]
+                        dark:shadow-[0_25px_70px_rgba(255,255,255,0.4)]
+                        transition-all duration-500
+                        group
+                        hover:scale-105
+                        hover:-translate-y-2
+                        transform
+                        
+                        border border-white/40 dark:border-white/10
+                        backdrop-blur-md
+                        bg-black/30 dark:bg-black/10
+                        ">
+
+                            <h3 class="text-2xl font-bold mb-6 text-white dark:text-black">Producción de video</h3>
+
+                            <p class="mb-6 text-white dark:text-black">
+                            Videos promocionales y reels dinámicos que captan atención y fortalecen tu presencia digital.
+                            </p>
+
+                        </div>
+
+                        <!-- panel 4 -->
+                        <div class="aspect-auto p-8 rounded-2xl bg-background-light 
+                        
+                        shadow-[0_20px_40px_rgba(0,0,0,0.08),0_-10px_30px_rgba(0,0,0,0.04),10px_0_30px_rgba(0,0,0,0.04),-10px_0_30px_rgba(0,0,0,0.04)]
+                        dark:shadow-[0_25px_70px_rgba(255,255,255,0.4)]
+                        transition-all duration-500
+                        group
+                        hover:scale-105
+                        hover:-translate-y-2
+                        transform
+                        
+                        border border-white/40 dark:border-white/10
+                        backdrop-blur-md
+                        bg-black/30 dark:bg-black/10
+                        ">
+
+                            <h3 class="text-2xl font-bold mb-6 text-white dark:text-black">Publicidad en Meta (Facebook & Instagram Ads)</h3>
+
+                            <p class="mb-4 text-white dark:text-black">
+                            Creamos y gestionamos campañas publicitarias cuando tu negocio lo requiere:
+                            </p>
+
+                            <ul class="space-y-3 text-sm leading-relaxed text-white dark:text-black">
+                            <li>• Segmentación por zonas, intereses y comportamientos</li>
+                            <li>• Enfoque en los puntos donde se encuentran posibles clientes</li>
+                            <li>• Campañas activas orientadas a visibilidad, interacción o ventas</li>
+                            </ul>
+                        </div>
+
+                        <!-- panel 5 -->
+
+                        <div class="aspect-auto p-8 rounded-2xl bg-background-light 
+                        
+                        shadow-[0_20px_40px_rgba(0,0,0,0.08),0_-10px_30px_rgba(0,0,0,0.04),10px_0_30px_rgba(0,0,0,0.04),-10px_0_30px_rgba(0,0,0,0.04)]
+                        dark:shadow-[0_25px_70px_rgba(255,255,255,0.4)]
+                        transition-all duration-500
+                        group
+                        hover:scale-105
+                        hover:-translate-y-2
+                        transform
+                        
+                        border border-white/40 dark:border-white/10
+                        backdrop-blur-md
+                        bg-black/30 dark:bg-black>/10
+                        ">
+                            <h3 class="text-2xl font-bold mb-6 text-white dark:text-black">Fotografía profesional</h3>
+
+                            <p class="text-sm text-white dark:text-black">
+                            Fotografía de alta calidad con equipo profesional, ideal para redes sociales, campañas publicitarias y uso comercial.
+                            </p>
+                            
+                        </div>
+
+                        <!-- panel 6 -->
+
+                        <div class="aspect-auto p-8 rounded-2xl bg-background-light 
+                        
+                        shadow-[0_20px_40px_rgba(0,0,0,0.08),0_-10px_30px_rgba(0,0,0,0.04),10px_0_30px_rgba(0,0,0,0.04),-10px_0_30px_rgba(0,0,0,0.04)]
+                        dark:shadow-[0_25px_70px_rgba(255,255,255,0.4)]
+                        transition-all duration-500
+                        group
+                        hover:scale-105
+                        hover:-translate-y-2
+                        transform
+                        
+                        border border-white/40 dark:border-white/10
+                        backdrop-blur-md 
+                        bg-black/30 dark:bg-black/10
+                        ">
+                            
+                            <h3 class="text-2xl font-bold mb-6 text-white dark:text-black">Asesoría creativa y guiones</h3>
+
+                            <p class="mb-6 text-sm text-white dark:text-black">
+                            Te acompañamos en la creación de ideas, planificación de contenido y guiones para grabación, para que comuniques tu mensaje de forma clara y efectiva.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </div>
-</section>
 
+        </section>
 
-<!-- paneles de estrategias -->
-<section class="py-20 md:py-32 bg-white dark:bg-slate-900/40 pt-30 md:pt-40" id="services">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-16 md:mb-24">
-            <h2 class="text-3xl md:text-5xl font-display font-bold mb-6 text-primary">Strategias</h2>
-            <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg">Tailored digital marketing ecosystems designed for modern luxury and lifestyle brands looking to scale with intention.</p>
-        </div>
+        <!-- paneles de precios -->
+        <section class="relative min-h-screen py-20 md:py-32 bg-slate-50 dark:bg-slate-900/10 overflow-hidden" id="work">
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- Video escritorio -->
+                <video
+                    class="absolute inset-0 w-full h-full object-cover blur-sm hidden md:block"
+                    autoplay
+                    muted
+                    loop
+                    playsinline>
+                    <source src="recursos/video-desktop.mp4" type="video/mp4">
+                </video>
 
-            <!-- panel 1 -->
-            <div class="p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 bg-background-light dark:bg-background-dark hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all group
-            transition-all duration-500
-            group
-            hover:scale-105
-            hover:-translate-y-2
-            transform"
-            >
-                <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                    <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+                <!-- Video móvil -->
+                <div class="video-wrapper absolute inset-0 md:hidden">
+                    <video
+                            id="bg-video"
+                            class="absolute inset-0 w-full h-full blur-sm object-cover md:hidden"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="auto">
+                            <source src="recursos/video-mobile.mp4" type="video/mp4">
+                    </video>
+                </div>        
+
+            <div class=" relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-16 md:mb-24"
+                    style="text-shadow: 0 0 10px rgba(255,255,255,0.9);">
+
+                    <h2 class="text-3xl md:text-5xl font-bolt font-bold mb-6 text-black">
+                        Nuestros Planes
+                    </h2>
                 </div>
-                <h3 class="text-2xl font-bold mb-4 ">Content Strategy</h3>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-                                        Data-backed content pillars designed to engage your specific target demographic across all major platforms.
-                                    </p>
-                <ul class="space-y-3 font-medium">
-                <li class="flex items-center text-sm"><span class="material-symbols-outlined text-primary text-lg mr-3">check_circle</span> Audit &amp; Analysis</li>
-                <li class="flex items-center text-sm"><span class="material-symbols-outlined text-primary text-lg mr-3">check_circle</span> Competitor Research</li>
-                <li class="flex items-center text-sm"><span class="material-symbols-outlined text-primary text-lg mr-3">check_circle</span> Trend Forecasting</li>
-                </ul>
-            </div>
 
-            <!-- panel 2 -->
-            <div class="p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 bg-background-light dark:bg-background-dark hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all group
-                transition-all duration-500
-                group
-                hover:scale-105
-                hover:-translate-y-2
-                transform">
-                <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                    <span class="material-symbols-outlined text-3xl">movie</span>
-                </div>
-                    <h3 class="text-2xl font-bold mb-4">Reels Production</h3>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-                                        High-converting short-form video content that stops the scroll and drives authentic engagement and conversions.
-                                    </p>
-                    <ul class="space-y-3 font-medium">
-                    <li class="flex items-center text-sm"><span class="material-symbols-outlined text-primary text-lg mr-3">check_circle</span> Scriptwriting &amp; Direction</li>
-                    <li class="flex items-center text-sm"><span class="material-symbols-outlined text-primary text-lg mr-3">check_circle</span> Professional Post-Production</li>
-                    <li class="flex items-center text-sm"><span class="material-symbols-outlined text-primary text-lg mr-3">check_circle</span> Strategic Sound Design</li>
-                    </ul>
-            </div>
+                <div class="row align-items-stretch g-5">
 
-            <!-- panel 3 -->
-            <div class="p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 bg-background-light dark:bg-background-dark hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all group
-                transition-all duration-500
-                group
-                hover:scale-105
-                hover:-translate-y-2
-                transform
-                ">
-                <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                    <span class="material-symbols-outlined text-3xl">groups</span>
-                </div>
-                    <h3 class="text-2xl font-bold mb-4">Community Mgmt</h3>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-                                            Fostering real connections with your audience to build brand loyalty and increase organic reach exponentially.
-                                        </p>
-                    <ul class="space-y-3 font-medium">
-                        <li class="flex items-center text-sm"><span class="material-symbols-outlined text-primary text-lg mr-3">check_circle</span> 24/7 Active Engagement</li>
-                        <li class="flex items-center text-sm"><span class="material-symbols-outlined text-primary text-lg mr-3">check_circle</span> DM Automation Flows</li>
-                        <li class="flex items-center text-sm"><span class="material-symbols-outlined text-primary text-lg mr-3">check_circle</span> Influencer Relations</li>
-                    </ul>
-            </div>
-        </div>
-    </div>
-</section>
+                    <!-- panel 1 -->
+                    <div class="col-md-4 d-flex">
 
-<!-- contenido funy -->
-<section class="relative min-h-screen py-20 md:py-32 bg-slate-50 dark:bg-slate-900/10 overflow-hidden" id="work">
+                        <div class="card bg-transparent border-0 shadow-sm w-100 h-100">
 
-    <div class="absolute inset-0 z-0 overflow-hidden">
+                            <!-- Botón que hace toda la card clickeable -->
+                            <button class="btn-wsp btn p-0 text-start w-100 h-100 d-flex"
+                                    data-servicio="Gestión de redes sociales"
+                                    type="button">
+
+                            <div class="p-8 md:p-10 rounded-3xl overflow-hidden
+                            border border-slate-100 dark:border-slate-800 
+                            bg-white dark:!bg-black 
+                            hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 
+                            transition-all duration-500 ease-in-out
+                            group
+                            hover:scale-105
+                            hover:-translate-y-2
+                            transform
+                            h-full flex flex-col">
+
+                                <!-- Icono -->
+                                <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 text-black dark:!text-white group-hover:bg-primary group-hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-3xl">
+                                    auto_awesome
+                                </span>
+                                </div>
+
+                                <!-- Título -->
+                                <h4 class="ext-4xl md:text-4xl font-extrabold text-black tracking-tight text-black dark:!text-white mb-6">
+                                Gestión de Redes (Full)
+                                </h4>
+
+                                <!-- Lista -->
+                                <ul class="space-y-4 font-medium text-left text-black dark:!text-white mb-4">
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Gestión completa de redes (Instagram, Facebook y TikTok)</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>6 posts para feed</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>6 reels editados</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>6 fotos profesionales</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Dirección creativa y guiones</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Contenido estratégico y educativo</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Diseño e identidad visual</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Campañas en Meta Ads (según inversión del cliente)</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Asesoría creativa continua</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>1–2 visitas mensuales para creación de contenido</span>
+                                </li>
+
+                                </ul>
+
+                                <!-- CTA visual (NO botón real para evitar conflicto) -->
+                                <div class="mt-auto text-center">
+                                <span class="btn btn-lg btn-outline text-white dark:!text-black bg-black dark:!bg-white pointer-events-none">
+                                    Cotiza precios
+                                </span>
+                                </div>
+
+                            </div>
+
+                            </button>
+
+                        </div>
+
+                        </div>
+
+                    <!-- panel 2 -->
+                    <div class="col-md-4 d-flex">
+
+                        <div class="card bg-transparent border-0 shadow-sm w-100 h-100">
+
+                            <!-- Botón que hace toda la card clickeable -->
+                            <button class="btn-wsp btn p-0 text-start w-100 h-100 "
+                                    data-servicio="Creacion de Contenido"
+                                    type="button">
+
+                            <div class="p-8 md:p-10 rounded-3xl overflow-hidden
+                                border border-slate-100 dark:border-slate-800 
+                                bg-white dark:!bg-black 
+                                hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 
+                                transition-all duration-500 ease-in-out
+                                group
+                                hover:scale-105
+                                hover:-translate-y-2
+                                transform
+                                h-full flex flex-col">
+
+                                <!-- Icono -->
+                                <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 text-black dark:!text-white group-hover:bg-primary group-hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-3xl">
+                                    auto_awesome
+                                </span>
+                                </div>
+
+                                <!-- Título -->
+                                <h4 class="ext-4xl md:text-4xl font-extrabold text-black tracking-tight text-black dark:!text-white mb-6">
+                                Creación de Contenido
+                                </h4>
+
+                                <!-- Lista -->
+                                <ul class="space-y-4 font-medium text-left text-black dark:!text-white mb-4">
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Producción de fotos y videos</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Contenido editado y listo para publicar</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Asesoría creativa y guiones</span>
+                                </li>
 
 
-        <video
-            autoplay
-            muted
-            loop
-            playsinline
-            class="absolute inset-0 w-full h-full object-cover md:object-cover">
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Reels y videos promocionales</span>
+                                </li>
 
-            <source src="recursos/fondo de comercial de shampoo.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Fotografía profesional</span>
+                                </li>
 
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Sin manejo de redes sociales</span>
+                                </li>
 
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-8
-            relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-xl">
-                <h2 class="text-3xl md:text-5xl font-display font-bold mb-6">Recent Work</h2>
-                <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg">Explore our curated campaigns across global luxury markets.</p>
-                </div>
-                <div class="flex flex-wrap gap-4 overflow-x-auto pb-2 scrollbar-hide">
-                <button class="text-primary font-bold text-xs md:text-sm tracking-widest uppercase border-b-2 border-primary pb-1 whitespace-nowrap">All Work</button>
-                <button class="text-slate-400 font-bold text-xs md:text-sm tracking-widest uppercase hover:text-primary transition-colors pb-1 whitespace-nowrap">Fashion</button>
-                <button class="text-slate-400 font-bold text-xs md:text-sm tracking-widest uppercase hover:text-primary transition-colors pb-1 whitespace-nowrap">Lifestyle</button>
-                <button class="text-slate-400 font-bold text-xs md:text-sm tracking-widest uppercase hover:text-primary transition-colors pb-1 whitespace-nowrap">Beauty</button>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="aspect-[4/5] overflow-hidden rounded-2xl group relative cursor-pointer shadow-xl">
-                    <img alt="Instagram Campaign" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9cN7XBc8srfpYOQBQ2UhAT8G5B4MBpj3H7z9HVHA-yQEAv4lcCh74IixLZf8Sup5zg5BSuQgkK5KmGW7DanrvxhRqInTgC9SJ8vaKm_1EXH6ICKJYw3_juFr7Dk4NJMGz2ByqA1s-fa3gtiMSvvjUGjdrNsP6ydUDjPkr-JVmHqfAjvW_WiHbH_vwn7wKYawKD_EG9LNZxEIWt-m-OHVnFBHm6lIHWFgSN-JvoCnI0ltCMR4Z0G0f1InJDD_myDDZi5yJfn9S8mNp"/>
-                    <div class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
-                    <span class="text-white/80 text-[10px] font-bold uppercase tracking-widest mb-2">Instagram</span>
-                    <h4 class="text-white font-display text-xl md:text-2xl font-bold">Luxe Skin Campaign</h4>
-                    <div class="mt-4 p-3 bg-white rounded-full text-primary">
-                    <span class="material-symbols-outlined text-xl">visibility</span>
+                                </ul>
+
+                                <!-- CTA visual (NO botón real para evitar conflicto) -->
+                                <div class="mt-auto text-center">
+                                <span class="btn btn-lg btn-outline text-white dark:!text-black bg-black dark:!bg-white pointer-events-none">
+                                    Cotiza precios
+                                </span>
+                                </div>
+
+                            </div>
+
+                            </button>
+
+                        </div>
+
+                        </div>
+
+                    <!-- panel 3 -->
+                    <div class="col-md-4 d-flex">
+
+                        <div class="card bg-transparent border-0 shadow-sm w-100 h-100">
+
+                            <!-- Botón que hace toda la card clickeable -->
+                            <button class="btn-wsp btn p-0 text-start w-100 h-100 d-flex"
+                                    data-servicio="Personalizado"
+                                    type="button">
+
+                            <div class=" p-8 md:p-10 rounded-3xl overflow-hidden
+                            border border-slate-100 dark:border-slate-800 
+                            bg-white dark:!bg-black 
+                            hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 
+                            transition-all duration-500 ease-in-out
+                            group
+                            hover:scale-105
+                            hover:-translate-y-2
+                            transform
+                            h-full flex flex-col">
+
+                                <!-- Icono -->
+                                <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 text-black dark:!text-white group-hover:bg-primary group-hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-3xl">
+                                    auto_awesome
+                                </span>
+                                </div>
+
+                                <!-- Título -->
+                                <h4 class="ext-4xl md:text-4xl font-extrabold text-black tracking-tight text-black dark:!text-white mb-6">
+                                Personalizado
+                                </h4>
+
+                                <!-- Lista -->
+                                <ul class="space-y-4 font-medium text-left text-black dark:!text-white mb-4">
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Plan adaptado a tus necesidades</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Servicios a la medida</span>
+                                </li>
+
+                                <li class="flex items-start gap-3 text-sm leading-relaxed">
+                                    <span class="material-symbols-outlined text-black dark:!text-white text-lg shrink-0">
+                                    check_circle
+                                    </span>
+                                    <span>Ideal para proyectos especiales o requerimientos específicos</span>
+                                </li>
+
+                                </ul>
+
+                                <!-- CTA visual (NO botón real para evitar conflicto) -->
+                                <div class="mt-auto text-center">
+                                <span class="btn btn-lg btn-outline text-white dark:!text-black bg-black dark:!bg-white pointer-events-none">
+                                    Cotiza precios
+                                </span>
+                                </div>
+
+                            </div>
+
+                            </button>
+
+                        </div>
+
                     </div>
-                    </div>
                 </div>
-                <div class="aspect-[4/5] overflow-hidden rounded-2xl group relative cursor-pointer shadow-xl lg:mt-12">
-                    <img alt="TikTok Content" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgpzaqbQDdaQbkD2K2FCIpSSOhg5j23WQ78RqvtEFm0OO-Ig_B3Wx7qqruoOgqBbx9Yvv41xgx2dRnlrn5J5YRz4cuHGBapq3weiCllJTzv1Ic1U_hF1DZ-gvYnCYs75RRPBDkk2MqNZ2EwnLJvE4c9nnojkkStmKr3A2l6vyXeT7HUpoYQB1dDA4-_i8X-thZ_wpC8c5qFQZ-rxmw40qlvkhQYOvaVOuMwlUOfChHVSi09mVx4fDnogBLkj-3avi4QlvDzpcn7u0F"/>
-                    <div class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
-                    <span class="text-white/80 text-[10px] font-bold uppercase tracking-widest mb-2">TikTok</span>
-                    <h4 class="text-white font-display text-xl md:text-2xl font-bold">Summer Style</h4>
-                    <div class="mt-4 p-3 bg-white rounded-full text-primary">
-                    <span class="material-symbols-outlined text-xl">play_arrow</span>
-                    </div>
-                    </div>
-                </div>
-                <div class="aspect-[4/5] overflow-hidden rounded-2xl group relative cursor-pointer shadow-xl">
-                    <img alt="Branding Concept" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhB-SeavUoGGR9FvUYi8b6HplfChv2ZwOLyxy3ESBVwbB9KIHTpqT0I1lqRIjrRKoXIwBkCDGocSFXyVdCDrFE_oxMGGMFPWHWvjKqcc63EqLqRs0TC0Iqvj5RfyjmXEYT2mBasRvztujh2lY0-tZkql9V-geDCW33KWINWvjTy65zrzdiKJt9F4XKxZIJsCKCsXPhmhalqLzyWqyMxd-AyeKukr_KXtlKuthWb1L9efWwXoZcMAUgushZj1fud2v4bdonZsMUrYUl"/>
-                    <div class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
-                    <span class="text-white/80 text-[10px] font-bold uppercase tracking-widest mb-2">Creative Direction</span>
-                    <h4 class="text-white font-display text-xl md:text-2xl font-bold">Pure Interiors</h4>
-                    <div class="mt-4 p-3 bg-white rounded-full text-primary">
-                    <span class="material-symbols-outlined text-xl">collections</span>
-                    </div>
-                    </div>
-                </div>
-                <div class="aspect-[4/5] overflow-hidden rounded-2xl group relative cursor-pointer shadow-xl lg:mt-12">
-                    <img alt="Photography" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8Bbn0R418WOYRl_mRQyemMDhwcd8fY0_uVxN15aT0ud7IoutKoxGu1Tzijk9Fga4foNpHQfCtW2Vptzg0YncpLL8wEDgJO3qNlKzqPc1g8tRj6_lxmMU1UAba9C1q7oDKNbfTfLVKO5PUZxtPQKvSDYR1igHvRSmDoWDIsbflVZJdTziO3o6cfy7kdSeLygkfnzc65fr9RkpPMqjTr5ZuXz0w0PlzrnMtNyxkmDdHs_ovsgvlQH55tEm1kynaGGFT7eRvK1a3fq9h"/>
-                    <div class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
-                    <span class="text-white/80 text-[10px] font-bold uppercase tracking-widest mb-2">Content</span>
-                    <h4 class="text-white font-display text-xl md:text-2xl font-bold">The Coffee Ritual</h4>
-                    <div class="mt-4 p-3 bg-white rounded-full text-primary">
-                    <span class="material-symbols-outlined text-xl">photo_camera</span>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-</section>
 
-<!-- barra movil de colaboradores -->
-<section class="relative w-full py-12 bg-white overflow-hidden">
-    
-    <div class="max-w-7xl mx-auto mb-16 text center mb-16">
-        
-        <p class="text-sm uppercase tracking-[0.25rem] text-gray-400 mb4">
-            confian en nosotros</p>
+        </section>
 
-        <h2 class="text-3xl md:text-5x1 font-bold text-primary">
-            Empresas con las que hemos colaborado
-        </h2>
-    </div>
-
-    <div class="relative overflow-hidden">
-        
-        <!-- Fade Izquierdo -->
-        <div class="absolute left-0 top-0 h-full w-64 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-
-        <!-- Fade Derecho -->
-        <div class="absolute right-0 top-0 h-full w-64 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-
-
-        <div id="logo-track"
-            class="flex items-center gap-32 whitespace-nowrap">
-
-        <img src="recursos/logos rotables/logo test listo .png" class="h-20 opacity-60 grayscale" />
-        <img src="recursos/logos rotables/logo test 4.png" class="h-20 opacity-60 grayscale" />
-        <img src="recursos/logos rotables/logo test nc 3.png" class="h-20 opacity-60 grayscale" />
-        <img src="recursos/logos rotables/logo test nc 2.png" class="h-20 opacity-60 grayscale" />
-        <img src="recursos/logos rotables/logo test 4.png" class="h-20 opacity-60 grayscale" />
-        <img src="recursos/logos rotables/logo test listo .png" class="h-20 opacity-60 grayscale" />
-        <img src="recursos/logos rotables/logo test nc 2.png" class="h-20 opacity-60 grayscale" />
-        <img src="recursos/logos rotables/logo test nc 3.png" class="h-20 opacity-60 grayscale" />
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- formulario para correo -->
-<section class="py-20 px-4 sm:px-6 lg:px-8">
-<div class="max-w-6xl mx-auto bg-primary rounded-3xl md:rounded-[4rem] p-10 md:p-24 relative overflow-hidden text-center shadow-2xl">
-<img alt="Purple texture" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-screen pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAudfEcJ38nGBzW0sdMpy9OIyCBH68ZLgDlI9QikHUAXbCXtCAwkZmqPxScjU3Ap2VMZBfKscK_cL8YIQpKFcqoFzttvkAep4_A9YOIIWKCQ6RTkjbnlkzsC95lkx3RqpHZeeDUJjkmZ5A7srdTsXV4Z0soW2Ze1IWWXUwjcaDwDnQBF_-RzmnbDMt4UiiRhz9MiJHHP7XtkCdeKVZY69Ot6aEnzur2c07EATW9ARVu4h856hRWbTcdKlYnvLxXmlDEpCWoZ3rmOgHg"/>
-<div class="relative z-10">
-<h2 class="text-3xl md:text-6xl font-display font-bold text-white mb-8">Ready to elevate your digital footprint?</h2>
-<p class="text-white/80 text-base md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-                    Join an elite circle of brands that trust our strategic vision and creative execution.
+        <!-- barra movil de colaboradores -->
+        <section id="empresas" class="relative w-full py-12 bg-white overflow-hidden">
+            
+            <div class="max-w-7xl mx-auto mb-16 text center mb-16">
+                
+                <p class="text-sm uppercase tracking-[0.25rem] text-gray-400 mb4">
+                    confian en nosotros
+            
                 </p>
-<div class="flex flex-col sm:flex-row gap-4 justify-center">
-<button class="bg-white text-primary px-10 py-5 rounded-2xl font-bold hover:bg-slate-50 transition-all text-lg shadow-lg">Book Free Consultation</button>
-<button class="bg-primary border border-white/30 text-white px-10 py-5 rounded-2xl font-bold hover:bg-white/10 transition-all text-lg backdrop-blur-sm">Our Process</button>
-</div>
-</div>
-</div>
-</section>
-<footer class="py-16 md:py-20 border-t border-slate-200 dark:border-slate-800">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col md:flex-row justify-between items-center gap-12">
-<div class="flex flex-col items-center md:items-start space-y-4">
-<span class="text-3xl font-display font-bold text-primary tracking-tighter">STRATOS</span>
-<p class="text-slate-500 dark:text-slate-400 text-sm max-w-xs text-center md:text-left">
-                        Creative-first agency building the next generation of lifestyle brands on social.
-                    </p>
-</div>
-<div class="flex flex-wrap justify-center gap-8 text-sm font-semibold text-slate-500 dark:text-slate-300">
-<a class="hover:text-primary transition-colors" href="#">Instagram</a>
-<a class="hover:text-primary transition-colors" href="#">TikTok</a>
-<a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
-<a class="hover:text-primary transition-colors" href="#">Pinterest</a>
-</div>
-<div class="text-sm text-slate-400 dark:text-slate-500">
-                    © 2024 STRATOS Digital.
-                </div>
-</div>
-</div>
-</footer>
 
-</body></html>
+                <h2 class="ext-4xl md:text-4xl font-extrabold text-black tracking-tight">
+                    Empresas con las que hemos colaborado
+                </h2>
+
+            </div>
+
+            <div class="relative overflow-hidden">
+                
+                <!-- Fade Izquierdo -->
+                <!-- <div class="absolute left-0 top-0 h-full w-64 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+
+                    Fade Derecho -->
+                <!-- <div class="absolute right-0 top-0 h-full w-64 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div> -->
+
+
+                <div id="logo-track"
+                    class="flex items-center gap-32 whitespace-nowrap">
+
+                    <!-- <img src="recursos/VM/logos/kainos logo.PNG" class="h-20 opacity-60 grayscale" /> -->
+                    <img src="recursos/VM/logos/logo calier.png" class="h-16 md:h-40 " />
+                    <img src="recursos/VM/logos/logo final sin fondo.png" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/logo gripi.png" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/logo petopia.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/logo the boxing.jpg" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/que pretti logo.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/brod sandwiches.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/burdog logo.PNG" class="h-16 md:h-40 " />
+                    <img src="recursos/VM/logos/days.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/muy mucho.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/roche.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/Primitiva .PNG" class="h-16 md:h-40 " />
+                    <img src="recursos/VM/logos/nitriminca.png" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/que pretti logo.PNG" class="h-16 md:h-40" />
+                    
+                    <!-- <img src="recursos/VM/logos/kainos logo.PNG" class="h-20 opacity-60 grayscale" /> -->
+                    <img src="recursos/VM/logos/logo calier.png" class="h-16 md:h-40 " />
+                    <img src="recursos/VM/logos/logo final sin fondo.png" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/logo gripi.png" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/logo petopia.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/logo the boxing.jpg" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/que pretti logo.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/brod sandwiches.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/burdog logo.PNG" class="h-16 md:h-40 " />
+                    <img src="recursos/VM/logos/days.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/muy mucho.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/roche.PNG" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/Primitiva .PNG" class="h-16 md:h-40 " />
+                    <img src="recursos/VM/logos/nitriminca.png" class="h-16 md:h-40" />
+                    <img src="recursos/VM/logos/que pretti logo.PNG" class="h-16 md:h-40" />
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- formulario para correo -->
+        <section id="formulario" class="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
+
+            <img src="recursos/VM/logos/fondo de estudio.png" alt="fondoTipoStudio" 
+                        class="absolute inset-0 w-full h-full object-cover z-0">
+
+        <div class="max-w-6xl mx-auto 
+            backdrop-blur-2xl 
+            rounded-3xl md:rounded-[4rem] 
+            p-10 md:p-24 
+            relative overflow-hidden 
+            text-center 
+            shadow-[0_8px_40px_rgba(0,0,0,0.15)] 
+            border border-white/50">
+
+
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-6xl font-display font-bold text-white dark:!text-black  mb-8">CONTACTANOS</h2>
+
+                <div>
+                    <img src="" alt="">
+                </div>
+
+                <form id="miFormulario" action="https://formsubmit.co/vmphotosmedia@gmail.com" method="POST" class="space-y-6 max-w-2xl mx-auto">
+
+                    <input type="text" name="name" placeholder="Nombre"
+                        class="w-full px-6 py-4 rounded-xl 
+                        bg-[#F1F3F5] 
+                        border border-[#1D1D1F]/30 
+                        text-[#1D1D1F] 
+                        placeholder-gray-500 
+                        focus:outline-none 
+                        focus:ring-2 
+                        focus:ring-[#1D1D1F]/20 
+                        focus:border-[#1D1D1F]" required>
+                        <input type="email" name="email" placeholder="Correo electrónico"
+                        class="w-full px-6 py-4 rounded-xl 
+                        bg-[#F1F3F5] 
+                        border border-[#1D1D1F]/30 
+                        text-[#1D1D1F] 
+                        placeholder-gray-500 
+                        focus:outline-none 
+                        focus:ring-2 
+                        focus:ring-[#1D1D1F]/20 
+                        focus:border-[#1D1D1F]" required>
+
+                        <textarea name="message" rows="5" placeholder="Escribe tu mensaje..."
+                        class="w-full px-6 py-4 rounded-xl 
+                        bg-[#F1F3F5] 
+                        border border-[#1D1D1F]/30 
+                        text-[#1D1D1F] 
+                        placeholder-gray-500 
+                        focus:outline-none 
+                        focus:ring-2 
+                        focus:ring-[#1D1D1F]/20 
+                        focus:border-[#1D1D1F]" required></textarea>
+
+                        <!-- Opcional: evitar spam -->
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <button type="submit"
+                        class="bg-black border border-white/30 text-white px-10 py-5 rounded-2xl font-bold hover:bg-white/10 transition-all text-lg backdrop-blur-sm w-full">
+                            Enviar
+                        </button>
+                </form>
+            </div>
+        </div>
+        </div>
+        </section>
+
+
+    <footer class="py-16 md:py-20 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="flex flex-col items-center md:items-start space-y-4">
+                <span class="text-3xl font-display font-bold text-black tracking-tighter">VM PHOTOS MEDIA</span>
+                <!-- <p class="text-slate-500 dark:text-slate-400 text-sm max-w-xs text-center md:text-left">
+                                        Creative-first agency building the next generation of lifestyle brands on social.
+                                    </p> -->
+            </div>
+            <div class="flex flex-wrap justify-center gap-8 text-sm font-semibold text-slate-500">
+                <a class="hover:text-primary transition-colors" href="#https://www.instagram.com/victormanuel620/">Instagram</a>
+                <a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+                <a class="hover:text-primary transition-colors" href="https://wa.me/50763202417"> +507 6320-2417</a>
+            </div>
+                <div class="text-sm text-slate-400 dark:text-slate-500">
+                                © 2026 VMPHTOTOSMEDIA Digital.
+                            </div>
+            </div>
+        </div>
+    </footer>
+
+    </body>
+</html>

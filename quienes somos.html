@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quiénes Somos - VM PHOTOSMEDIA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+<style type="text/tailwindcss">
+        :root {
+            --primary: #a855f7;
+            --background-light: #ffffff;
+            --background-dark: #0a0a0a;
+        }
+        @layer base {
+            body {
+                @apply font-sans antialiased;
+            }
+            h1, h2, h3 {
+                @apply font-display;
+            }
+        }
+        .bg-soft-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        /* imagen de fondo */
+        .hero{
+            position: relative;
+            overflow: hidden;
+
+            background-image: url('recursos/_MG_4202.CR2');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+
+            background: rgba(0, 0, 0, 0.15);
+            z-index: 0;
+        }
+
+        .hero > *{
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width:768px){
+            .hero{
+                background-image: url('recursos/vm-mobile.jpeg');
+                background-size: cover;
+                background-position: 80% center;
+            }
+        }
+
+    </style>
+
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#a855f7",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-slate-100 transition-colors duration-500">
+    
+    <!-- barra del nav -->
+    <nav class="fixed w-full z-50 bg-white/30 dark:!bg-black/40 backdrop-blur-md border-b transition-all duration-500 border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+        <div class="flex items-center">
+        <a class="text-2xl font-display font-bold !text-black dark:!text-white tracking-tight" href="index.html">VM PHOTOSMEDIA</a>
+        </div>
+        <div class="hidden text-black md:flex items-center space-x-8">
+            <a class="nav-link" href="quienes somos.html">Quienes somos</a>
+            <a class="nav-link" href="index.html">Servicio</a>
+            <a class="nav-link" href="index.html">Planes</a>
+            <a class="nav-link" href="index.html">Empresas</a>
+            <div class="flex items-center pl-6 border-l border-slate-200 dark:border-slate-700 space-x-4">
+                <button aria-label="Toggle Dark Mode" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
+                <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                <span class="material-symbols-outlined hidden dark:block text-yellow-400">light_mode</span>
+                </button>
+            <a href="index.html"><button class="!bg-black dark:!bg-white !text-white dark:!text-black px-6 py-2.5 rounded-full hover:bg-black transition-all shadow-lg shadow-primary/20 font-medium">
+                                    CONTACTANOS
+                                    </button></a>
+            </div>
+        </div>
+        <!-- meunu en telefono -->
+        <div class="flex items-center md:hidden space-x-2">
+            <button aria-label="Toggle Dark Mode" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
+                <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                <span class="material-symbols-outlined hidden dark:block text-yellow-400">light_mode</span>
+            </button>
+            <button class="p-2 rounded-lg hover:!bg-black dark:hover:!bg-white !text-black dark:!text-white" onclick="toggleMobileMenu()">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            </div>
+            </div>
+            </div>
+            <div class="hidden absolute top-20 left-0 w-full 
+                    !bg-white dark:!bg-black
+                    border-b border-slate-200 dark:border-slate-800 
+                    flex-col p-6 space-y-4 md:hidden 
+                    animate-in slide-in-from-top duration-300" 
+                    id="mobile-menu">
+                <a class="nav-link text-lg py-2" href="" onclick="toggleMobileMenu()">Quienes somos</a>
+                <a class="nav-link text-lg py-2" href="index.html" onclick="toggleMobileMenu()">Servicios</a>
+                <a class="nav-link text-lg py-2" href="index.html" onclick="toggleMobileMenu()">Planes</a>
+                <a class="nav-link text-lg py-2" href="index.html" onclick="toggleMobileMenu()">Empresas</a>
+                <a href="index.html"><button class="w-full bg-black dark:!bg-white text-white dark:!text-black py-4 rounded-xl font-bold mt-4">Contactanos</button></a> 
+        </div>
+    </nav>
+
+    <main class="hero relative min-h-screen pt-32 pb-40 overflow-hidden"> 
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 md:px-10">
+
+            <header class="mb-24 md:mb-32">
+                <div class="w-12 h-[1px] bg-black dark:bg-white mb-10"></div>
+                
+                <h1 class="text-left text-5xl sm:text-6xl md:text-7xl lg:text-8xl
+                    font-display font-bold tracking-tight
+                    text-black dark:text-white
+                    leading-none mb-6
+                    drop-shadow-[0_0_2px_rgba(255,255,255,0.8)]">
+                        SOBRE VMPHOTOSMEDIA
+                    </h1>
+            
+            </header>
+
+            <article class="prose prose-slate dark:prose-invert max-w-none">
+                
+                <!-- texto del quienes somos -->
+                <div class="space-y-8 md:space-y-12
+                            text-base sm:text-lg md:text-xl lg:text-2xl
+                            leading-relaxed md:leading-[1.8]
+                            font-light text-slate-700 dark:text-slate-300
+                            bg-white/70 backdrop-blur-md
+                            rounded-2xl md:rounded-3xl
+                            p-6 sm:p-8 md:p-10 lg:p-14
+                            shadow-xl border border-white/30">
+
+                 <p>
+                    Detrás de VMPHOTOSMEDIA está Víctor Manuel, fotógrafo, creador audiovisual y especialista en contenido digital. Desde 2016 ayudo a marcas, empresas y profesionales a comunicar mejor a través de imágenes, videos y estrategias visuales que conectan con su audiencia.
+                </p>
+
+                <p>
+                    VMPHOTOSMEDIA es un estudio creativo especializado en fotografía, video y creación de contenido audiovisual para empresas, emprendedores y marcas personales que buscan fortalecer su presencia tanto en medios digitales como tradicionales.
+                </p>
+
+                <p>
+                    A lo largo de los años he trabajado desarrollando contenido para redes sociales, sitios web, campañas publicitarias y proyectos comerciales, ofreciendo soluciones que van desde la fotografía profesional y la producción de video hasta la creación de contenido para e-commerce, identidad visual y posicionamiento digital.
+                </p>
+
+                <p>
+                    Cada proyecto es trabajado de manera personalizada, entendiendo primero los objetivos de cada cliente para crear contenido que refleje su esencia, fortalezca su imagen y conecte con su público ideal. Más que ofrecer fotografías o videos, busco ayudar a construir una comunicación visual coherente y estratégica.
+                </p>
+
+                <p>
+                    VMPHOTOSMEDIA nace de una afición por la fotografía que con el tiempo evolucionó hacia una carrera profesional enfocada en la comunicación visual. Después de estudiar Comunicación Social y especializarme en la creación de contenido audiovisual, comencé a desarrollar proyectos desde 2016. Gracias a la experiencia adquirida a lo largo de los años, en 2024 decidí formalizar esta visión bajo el nombre de VMPHOTOSMEDIA.
+                </p>
+
+                <p>
+                    Hoy continúo trabajando con empresas, emprendedores y profesionales que entienden el valor de una imagen bien construida y de un contenido capaz de generar confianza, visibilidad y resultados.
+                </p>
+                </div>
+                <!-- 3 puntos -->
+                <div class="py-20 flex justify-center">
+                        <div class="flex space-x-3">
+                        <span class="w-1.5 h-1.5 rounded-full bg-black dark:bg-white"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-black dark:bg-white"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-black dark:bg-white"></span>
+                        </div>
+                </div>
+
+                    <!-- Botón de acción -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="index.html">
+                            <button class="px-8 py-4 bg-black text-white rounded-xl font-semibold hover:bg-secondary transition-all flex items-center justify-center group shadow-xl shadow-white/20">
+                                Comenzar una historia juntos
+                                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">
+                                    arrow_forward
+                                </span>
+                            </button>
+                        </a>
+                </div>
+
+            </article>
+        </div>
+    </main>
+    
+<footer class="py-16 md:py-20 border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-12">
+<div class="flex flex-col items-center md:items-start space-y-4">
+<span class="text-3xl font-display font-bold text-black tracking-tighter">VM PHOTOS MEDIA</span>
+<!-- <p class="text-slate-500 dark:text-slate-400 text-sm max-w-xs text-center md:text-left">
+                        Creative-first agency building the next generation of lifestyle brands on social.
+                    </p> -->
+</div>
+<div class="flex flex-wrap justify-center gap-8 text-sm font-semibold text-slate-500">
+<a class="hover:text-primary transition-colors" href="#https://www.instagram.com/victormanuel620/">Instagram</a>
+<a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-primary transition-colors" href="https://wa.me/50763202417"> +507 6320-2417</a>
+</div>
+<div class="text-sm text-slate-400 dark:text-slate-500">
+                    © 2026 VMPHTOTOSMEDIA Digital.
+                </div>
+</div>
+</div>
+</footer>
+
+</body>
+</html>
