@@ -21,7 +21,19 @@ function run(cmd, args) {
 }
 
 // 1. Tailwind
-run("npx", ["tailwindcss", "-i", "src/input.css", "-o", "css/tailwind.css", "--minify"]);
+// Se invoca con `node <cli>` en vez de `npx tailwindcss` porque el bit de
+// ejecucion de node_modules/.bin puede no venir seteado en un clone fresco.
+const TAILWIND_CLI = path.join(ROOT, "node_modules", "tailwindcss", "lib", "cli.js");
+if (fs.existsSync(TAILWIND_CLI)) {
+  run(process.execPath, [
+    TAILWIND_CLI,
+    "-i", "src/input.css",
+    "-o", "css/tailwind.css",
+    "--minify",
+  ]);
+} else {
+  run("npx", ["tailwindcss", "-i", "src/input.css", "-o", "css/tailwind.css", "--minify"]);
+}
 
 // 2. Limpiar dist
 fs.rmSync(DIST, { recursive: true, force: true });
