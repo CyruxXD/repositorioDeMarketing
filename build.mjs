@@ -54,12 +54,7 @@ for (const f of ROOT_FILES) {
 for (const d of ROOT_DIRS) {
   const src = path.join(ROOT, d);
   if (!fs.existsSync(src)) continue;
-  fs.cpSync(src, path.join(DIST, d), {
-    recursive: true,
-    // Los .mp4 estan fuera del repo (.gitignore). En Cloudflare no existen,
-    // asi que se omiten en vez de romper el build. En local, si estan, se copian.
-    filter: (s) => !s.endsWith(".mp4"),
-  });
+  fs.cpSync(src, path.join(DIST, d), { recursive: true });
   console.log(`  + ${d}/`);
 }
 

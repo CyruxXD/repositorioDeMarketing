@@ -5,7 +5,3 @@ npm-debug.log*
 .netlify/
 .wrangler/
 dist/
-
-# Videos fuera del repo (se sirven desde Cloudflare/R2 o se suben aparte)
-recursos/*.mp4
-recursos/VM/*.mp4
