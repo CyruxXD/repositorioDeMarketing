@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "node build.mjs",
+    "tailwind": "tailwindcss -i src/input.css -o css/tailwind.css --minify",
+    "watch": "tailwindcss -i src/input.css -o css/tailwind.css --watch",
+    "dev": "tailwindcss -i src/input.css -o css/tailwind.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

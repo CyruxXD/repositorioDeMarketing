@@ -1,0 +1,7 @@
+*.opt.mp4
+*.log
+npm-debug.log*
+.DS_Store
+.netlify/
+.wrangler/
+dist/
