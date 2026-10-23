@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en"><head>
+<html class="scroll-smooth" lang="es"><head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>VM Photosmedia | Fotografía, video y redes en Panamá</title>
     <link rel="icon" type="image/png" href="recursos/VM/favicon.png">
     <link rel="apple-touch-icon" href="recursos/VM/favicon-180.png">
-    <meta name="theme-color" content="#0e0e10">
+    <meta name="theme-color" content="#0E0E0E">
     <link href="css/tailwind.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -22,6 +22,13 @@
     document.addEventListener("DOMContentLoaded", function() {
         const formulario = document.getElementById("miFormulario");
         if (!formulario) return;
+        const alertTheme = {
+            background: "#141414",
+            color: "#FFFFFF",
+            iconColor: "#FFC20E",
+            confirmButtonColor: "#FFFFFF",
+            confirmButtonText: "Aceptar"
+        };
 
         formulario.addEventListener("submit", function(e) {
         e.preventDefault(); // Evita que recargue
@@ -39,14 +46,15 @@
         .then(response => {
             if (response.ok) {
                 Swal.fire({
+                    ...alertTheme,
                     title: "Mensaje enviado",
                     text: "Nos pondremos en contacto pronto.",
-                    icon: "success",
-                    confirmButtonColor: "#000"
+                    icon: "success"
                 });
                 form.reset();
             } else {
                 Swal.fire({
+                    ...alertTheme,
                     title: "Error",
                     text: "Hubo un problema al enviar el mensaje.",
                     icon: "error"
@@ -55,6 +63,7 @@
         })
         .catch(() => {
             Swal.fire({
+                ...alertTheme,
                 title: "Error",
                 text: "No se pudo conectar con el servidor.",
                 icon: "error"
@@ -67,13 +76,15 @@
 
     <style>
         :root {
-            --nav-ink: #0E0E10;
-            --nav-paper: #F6EFE4;
-            --nav-lilac: #C9A24B;
-            --nav-muted: #A8A39B;
+            --nav-ink: #0E0E0E;
+            --nav-paper: #FFFFFF;
+            --nav-lilac: #FFC20E;
+            --nav-muted: #B3B3B3;
             --nav-ease: cubic-bezier(.22, 1, .36, 1);
             --nav-h: 76px;
         }
+
+        .swal2-popup .swal2-styled.swal2-confirm { color: #0E0E0E; }
 
         .nav {
             display: block;
@@ -97,7 +108,7 @@
             inset: 0;
             z-index: -1;
             pointer-events: none;
-            background: rgba(14, 14, 16, .72);
+            background: rgba(14, 14, 14, .72);
             backdrop-filter: blur(16px) saturate(140%);
             -webkit-backdrop-filter: blur(16px) saturate(140%);
             opacity: 0;
@@ -176,7 +187,7 @@
             display: inline-block;
             border: 0;
             line-height: inherit;
-            background: var(--nav-lilac);
+            background: var(--nav-paper);
             color: var(--nav-ink) !important;
             font-weight: 600;
             padding: 11px 22px !important;
@@ -185,7 +196,7 @@
         }
         .nav .links .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 28px -8px rgba(201, 162, 75, .7);
+            box-shadow: 0 10px 28px -8px rgba(255, 194, 14, 0.22);
         }
         .nav .burger {
             display: none;
@@ -285,7 +296,7 @@
             padding-bottom: 3rem;
         }
         .hero-particles-section {
-            background: #0e0e10 !important;
+            background: #0E0E0E !important;
             color: #fff;
             /* recorta el fondo fijo (position: fixed) a los límites de esta
                sección: el VenomBeam sigue al scroll, pero no se ve en el
@@ -297,7 +308,7 @@
         .venom-bg {
             position: fixed;
             inset: 0;
-            background: #0e0e10;
+            background: #0E0E0E;
             isolation: isolate;
             pointer-events: none;
         }
@@ -330,14 +341,14 @@
         @media (prefers-reduced-motion: reduce) {
             .venom-dot { animation: none; }
         }
-        .hero-copy h1 { color: #F6EFE4; }
-        .hero-copy p { color: rgba(246,239,228,.78) !important; }
+        .hero-copy h1 { color: #FFFFFF; }
+        .hero-copy p { color: rgba(255, 255, 255,.78) !important; }
         /* LayeredButton (ScrollX UI) — port para el botón de contacto */
         :root {
-            --lbtn-accent: #C8262B; /* rojo editorial */
+            --lbtn-accent: #FFC20E; /* rojo editorial */
             --lbtn-surface: transparent;
-            --lbtn-label: #F6EFE4;
-            --lbtn-hover-label: #F6EFE4; /* crema, sobre el rojo */
+            --lbtn-label: #0E0E0E;
+            --lbtn-hover-label: #0E0E0E;
             --lbtn-border-width: 3px;
         }
         .lb-btn {
@@ -351,7 +362,7 @@
             border: 0;
             padding: 0;
             border-radius: 14px;
-            background: var(--lbtn-accent);
+            background: #FFFFFF;
             cursor: pointer;
             font: inherit;
             font-weight: 600;
@@ -381,7 +392,7 @@
             border-radius: 9999px;
             pointer-events: none;
             will-change: transform;
-            background: var(--lbtn-accent);
+            background: #F2F2F2;
             transform: translateX(-50%) scale(0);
         }
         .lb-content {
@@ -429,19 +440,19 @@
             padding: 120px 6vw;
             display: flex;
             align-items: center;
-            background: linear-gradient(180deg, #0E0E10 0%, #141416 45%, #0E0E10 100%);
-            border-top: 1px solid rgba(201, 162, 75, .14);
+            background: linear-gradient(180deg, #0E0E0E 0%, #141414 45%, #0E0E0E 100%);
+            border-top: 1px solid rgba(255, 194, 14, 0.14);
             overflow: hidden;
             scroll-margin-top: 60px;
             font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-            color: #F6EFE4;
+            color: #FFFFFF;
         }
         /* Rejilla fina que se desvanece hacia los bordes */
         .svc::before {
             content: ""; position: absolute; inset: 0; pointer-events: none;
             background-image:
-                linear-gradient(rgba(201, 162, 75, .07) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(201, 162, 75, .07) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
             background-size: 64px 64px;
             -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 100%);
                     mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 100%);
@@ -450,8 +461,8 @@
         .svc::after {
             content: ""; position: absolute; inset: -20%; pointer-events: none;
             background:
-                radial-gradient(34% 30% at 22% 28%, rgba(201, 162, 75, .38), transparent 70%),
-                radial-gradient(30% 28% at 80% 72%, rgba(201, 162, 75, .20), transparent 70%);
+                radial-gradient(34% 30% at 22% 28%, rgba(255, 255, 255, 0.08), transparent 70%),
+                radial-gradient(30% 28% at 80% 72%, rgba(255, 255, 255, 0.08), transparent 70%);
             filter: blur(30px);
             animation: svc-drift 22s ease-in-out infinite alternate;
         }
@@ -466,16 +477,16 @@
         .svc-eyebrow {
             display: inline-flex; align-items: center; gap: 12px;
             font-size: .75rem; font-weight: 600; letter-spacing: .24em;
-            text-transform: uppercase; color: #C9A24B;
+            text-transform: uppercase; color: #FFC20E;
         }
-        .svc-eyebrow::before, .svc-eyebrow::after { content: ""; width: 28px; height: 1px; background: #C9A24B; opacity: .6; }
+        .svc-eyebrow::before, .svc-eyebrow::after { content: ""; width: 28px; height: 1px; background: #FFC20E; opacity: .6; }
         .svc-head h2 {
             font-family: "Playfair Display", Georgia, serif;
             font-size: clamp(2.2rem, 4.6vw, 3.4rem);
             line-height: 1.06; letter-spacing: -.02em;
             margin: 18px 0 16px;
         }
-        .svc-lead { color: #A8A39B; line-height: 1.65; font-size: 1.02rem; }
+        .svc-lead { color: #B3B3B3; line-height: 1.65; font-size: 1.02rem; }
 
         /* Rejilla de tarjetas */
         .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -485,7 +496,7 @@
             padding: 28px 26px 26px;
             border-radius: 20px;
             background:
-                radial-gradient(340px circle at var(--mx) var(--my), rgba(201, 162, 75, .16), transparent 60%),
+                radial-gradient(340px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.08), transparent 60%),
                 rgba(255, 255, 255, .035);
             border: 1px solid rgba(255, 255, 255, .09);
             backdrop-filter: blur(10px);
@@ -495,48 +506,48 @@
         }
         .svc-card::before { /* línea lila que se dibuja arriba al hover */
             content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 100%;
-            background: linear-gradient(90deg, #C9A24B, #EAD199);
+            background: linear-gradient(90deg, #FFC20E, #FFC20E);
             transform: scaleX(0); transform-origin: left;
             transition: transform .6s var(--svc-ease);
         }
         .svc-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(201, 162, 75, .35);
-            box-shadow: 0 24px 50px -24px rgba(201, 162, 75, .7);
+            border-color: rgba(255, 194, 14, 0.3);
+            box-shadow: 0 24px 50px -24px rgba(255, 194, 14, 0.22);
         }
         .svc-card:hover::before { transform: scaleX(1); }
 
         .svc-num {
             font-family: "Playfair Display", serif;
-            font-size: .95rem; font-weight: 600; color: #C9A24B; letter-spacing: .08em;
+            font-size: .95rem; font-weight: 600; color: #FFC20E; letter-spacing: .08em;
         }
         .svc-card h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.28; letter-spacing: -.01em; margin: 12px 0 10px; }
-        .svc-card h3 small { display: block; margin-top: 2px; font-size: .85rem; font-weight: 500; color: #A8A39B; }
-        .svc-card p { font-size: .9rem; line-height: 1.62; color: #A8A39B; margin: 0; }
+        .svc-card h3 small { display: block; margin-top: 2px; font-size: .85rem; font-weight: 500; color: #B3B3B3; }
+        .svc-card p { font-size: .9rem; line-height: 1.62; color: #B3B3B3; margin: 0; }
 
         .svc-sub { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .09); }
         .svc-sub h4 {
             font-size: .7rem; font-weight: 600; letter-spacing: .14em;
-            text-transform: uppercase; color: #F6EFE4; margin: 0 0 10px;
+            text-transform: uppercase; color: #FFFFFF; margin: 0 0 10px;
         }
         .svc-sub ul { list-style: none; display: grid; gap: 8px; margin: 0; padding: 0; }
-        .svc-sub li { position: relative; padding-left: 18px; font-size: .86rem; line-height: 1.5; color: #A8A39B; }
+        .svc-sub li { position: relative; padding-left: 18px; font-size: .86rem; line-height: 1.5; color: #B3B3B3; }
         .svc-sub li::before {
             content: ""; position: absolute; left: 0; top: .62em;
-            width: 9px; height: 1.5px; background: #C9A24B;
+            width: 9px; height: 1.5px; background: #FFC20E;
         }
 
         /* CTA */
         .svc-cta { text-align: center; margin-top: 48px; }
         .svc-btn {
             display: inline-flex; align-items: center; gap: 10px;
-            background: #C8262B; color: #fff; text-decoration: none;
+            background: #FFFFFF; color: #0E0E0E; text-decoration: none;
             font-weight: 600; font-size: .92rem;
             padding: 13px 24px; border-radius: 8px;
             transition: transform .4s var(--svc-ease), box-shadow .4s var(--svc-ease), background .4s;
         }
-        .svc-btn:hover { transform: translateY(-2px); background: #A81F24; box-shadow: 0 12px 30px -10px rgba(200, 38, 43, .75); color: #fff; }
-        .svc-btn:focus-visible, .svc-card:focus-visible { outline: 2px solid #C9A24B; outline-offset: 4px; }
+        .svc-btn:hover { transform: translateY(-2px); background: #F2F2F2; box-shadow: 0 12px 30px -10px rgba(255, 194, 14, 0.22); color: #0E0E0E; }
+        .svc-btn:focus-visible, .svc-card:focus-visible { outline: 2px solid #FFC20E; outline-offset: 4px; }
         .svc-btn svg { transition: transform .4s var(--svc-ease); }
         .svc-btn:hover svg { transform: translateX(4px); }
 
@@ -565,12 +576,12 @@
         /* ===== Panel de planes (cristal violeta sobre video, prefijo pln-) ===== */
         .pln {
             --pln-ease: cubic-bezier(.22, 1, .36, 1);
-            --pln-glass: rgba(18, 18, 21, .78);
+            --pln-glass: rgba(18, 18, 18, .78);
             --pln-line: rgba(255, 255, 255, .12);
-            --pln-lilac: #C9A24B;
-            --pln-violet: #C8262B;
-            --pln-paper: #F6EFE4;
-            --pln-soft: #D8D2C7;
+            --pln-lilac: #FFC20E;
+            --pln-violet: #FFC20E;
+            --pln-paper: #FFFFFF;
+            --pln-soft: #DADADA;
             position: relative;
             min-height: 100vh;
             padding: 100px 6vw;
@@ -580,15 +591,15 @@
             scroll-margin-top: 60px;
             font-family: "Plus Jakarta Sans", system-ui, sans-serif;
             color: var(--pln-paper);
-            background: #0E0E10; /* respaldo por si el video tarda en cargar */
+            background: #0E0E0E; /* respaldo por si el video tarda en cargar */
         }
         /* Filtro transparente morado sobre el video de fondo */
         .pln-veil {
             position: absolute; inset: 0; z-index: 1; pointer-events: none;
             background:
-                radial-gradient(60% 45% at 18% 18%, rgba(201, 162, 75, .30), transparent 70%),
-                radial-gradient(55% 45% at 85% 85%, rgba(201, 162, 75, .22), transparent 70%),
-                linear-gradient(180deg, rgba(14, 14, 16, .58) 0%, rgba(23, 23, 27, .44) 45%, rgba(12, 12, 14, .68) 100%);
+                radial-gradient(60% 45% at 18% 18%, rgba(255, 255, 255, 0.08), transparent 70%),
+                radial-gradient(55% 45% at 85% 85%, rgba(255, 255, 255, 0.08), transparent 70%),
+                linear-gradient(180deg, rgba(14, 14, 14, .58) 0%, rgba(23, 23, 23, .44) 45%, rgba(12, 12, 12, .68) 100%);
         }
         .pln-wrap { position: relative; z-index: 2; width: 100%; max-width: 1080px; margin: 0 auto; }
 
@@ -625,7 +636,7 @@
             padding: 30px 28px 28px;
             border-radius: 24px;
             background:
-                radial-gradient(360px circle at var(--mx) var(--my), rgba(201, 162, 75, .18), transparent 60%),
+                radial-gradient(360px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.08), transparent 60%),
                 var(--pln-glass);
             border: 1px solid var(--pln-line);
             backdrop-filter: blur(18px) saturate(130%);
@@ -635,16 +646,16 @@
         }
         .pln-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(201, 162, 75, .4);
-            box-shadow: 0 40px 70px -30px rgba(201, 162, 75, .75);
+            border-color: rgba(255, 194, 14, 0.3);
+            box-shadow: 0 40px 70px -30px rgba(255, 194, 14, 0.22);
         }
 
         /* Plan destacado */
-        .pln-card.pln-featured { border-color: rgba(201, 162, 75, .55); box-shadow: 0 0 0 1px rgba(201, 162, 75, .25), 0 40px 80px -30px rgba(201, 162, 75, .8); }
+        .pln-card.pln-featured { border-color: rgba(255, 194, 14, 0.3); box-shadow: 0 0 0 1px rgba(255, 194, 14, 0.22), 0 40px 80px -30px rgba(255, 194, 14, 0.22); }
         .pln-badge {
             position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
             background: linear-gradient(90deg, var(--pln-violet), var(--pln-lilac));
-            color: #0E0E10; font-size: .68rem; font-weight: 700;
+            color: #0E0E0E; font-size: .68rem; font-weight: 700;
             letter-spacing: .14em; text-transform: uppercase;
             padding: 6px 14px; border-radius: 999px; white-space: nowrap;
         }
@@ -652,12 +663,12 @@
         .pln-icon {
             width: 46px; height: 46px; border-radius: 14px;
             display: grid; place-items: center;
-            background: rgba(201, 162, 75, .12);
-            border: 1px solid rgba(201, 162, 75, .25);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 194, 14, 0.25);
             color: var(--pln-lilac);
             transition: transform .6s var(--pln-ease), background .6s var(--pln-ease);
         }
-        .pln-card:hover .pln-icon { transform: rotate(12deg) scale(1.06); background: rgba(201, 162, 75, .2); }
+        .pln-card:hover .pln-icon { transform: rotate(12deg) scale(1.06); background: rgba(255, 255, 255, 0.08); }
 
         .pln-card h3 {
             font-family: "Playfair Display", Georgia, serif;
@@ -681,15 +692,15 @@
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
             padding: 14px 22px; border-radius: 10px;
             font-size: .92rem; font-weight: 600; text-decoration: none;
-            color: var(--pln-paper); background: rgba(255, 255, 255, .06);
-            border: 1px solid rgba(201, 162, 75, .4);
+            color: #0E0E0E; background: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, .8);
             transition: transform .4s var(--pln-ease), background .4s, box-shadow .4s var(--pln-ease), border-color .4s;
         }
-        .pln-btn:hover { transform: translateY(-2px); background: rgba(201, 162, 75, .16); color: var(--pln-paper); }
+        .pln-btn:hover { transform: translateY(-2px); background: #F2F2F2; border-color: var(--pln-lilac); color: #0E0E0E; }
         .pln-btn svg { transition: transform .4s var(--pln-ease); }
         .pln-btn:hover svg { transform: translateX(4px); }
-        .pln-featured .pln-btn { background: var(--pln-violet); border-color: var(--pln-violet); color: #fff; }
-        .pln-featured .pln-btn:hover { background: #A81F24; box-shadow: 0 14px 30px -10px rgba(200, 38, 43, .75); color: #fff; }
+        .pln-featured .pln-btn { background: #FFFFFF; border-color: #FFFFFF; color: #0E0E0E; }
+        .pln-featured .pln-btn:hover { background: #F2F2F2; border-color: var(--pln-lilac); box-shadow: 0 14px 30px -10px rgba(255, 194, 14, 0.22); color: #0E0E0E; }
         .pln-btn:focus-visible, .pln-card:focus-visible { outline: 2px solid var(--pln-lilac); outline-offset: 4px; }
 
         /* Animación de entrada (se activa al añadir .pln-js desde JS) */
@@ -723,15 +734,15 @@
             padding: 88px 6vw 96px;
             overflow: hidden;
             font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-            color: #F6EFE4;
-            background: linear-gradient(180deg, #0E0E10 0%, #141416 60%, #0E0E10 100%);
-            border-top: 1px solid rgba(201, 162, 75, .14);
+            color: #FFFFFF;
+            background: linear-gradient(180deg, #0E0E0E 0%, #141414 60%, #0E0E0E 100%);
+            border-top: 1px solid rgba(255, 194, 14, 0.14);
         }
         .emp-head {
             width: fit-content; max-width: 100%;
             margin: 0 auto 46px; padding: 24px 38px 26px;
             text-align: center;
-            background: rgba(18, 18, 21, .78);
+            background: rgba(18, 18, 18, .78);
             border: 1px solid rgba(255, 255, 255, .12);
             border-radius: 24px;
             backdrop-filter: blur(18px) saturate(130%);
@@ -740,10 +751,10 @@
         .emp-eyebrow {
             display: inline-flex; align-items: center; gap: 12px;
             font-size: .72rem; font-weight: 600; letter-spacing: .24em;
-            text-transform: uppercase; color: #C9A24B;
+            text-transform: uppercase; color: #FFC20E;
         }
         .emp-eyebrow::before, .emp-eyebrow::after {
-            content: ""; width: 26px; height: 1px; background: #C9A24B; opacity: .6;
+            content: ""; width: 26px; height: 1px; background: #FFC20E; opacity: .6;
         }
         .emp-head h2 {
             font-family: "Playfair Display", Georgia, serif;
@@ -755,7 +766,7 @@
         .emp-strip {
             position: relative;
             padding: 30px 0;
-            background: rgba(18, 18, 21, .78);
+            background: rgba(18, 18, 18, .78);
             border: 1px solid rgba(255, 255, 255, .12);
             border-radius: 24px;
             backdrop-filter: blur(18px) saturate(130%);
@@ -796,7 +807,7 @@
         .emp-set img.emp-chip {
             height: 118px;
             padding: 19px 30px;
-            background: linear-gradient(155deg, rgba(246, 239, 228, .97) 0%, rgba(230, 228, 225, .92) 100%);
+            background: linear-gradient(155deg, rgba(255, 255, 255, .97) 0%, rgba(242, 242, 242, .92) 100%);
             border: 1px solid rgba(255, 255, 255, .6);
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, .8),
@@ -822,26 +833,26 @@
         .frm-veil {
             position: absolute; inset: 0; z-index: 0; pointer-events: none;
             background:
-                radial-gradient(46% 38% at 16% 14%, rgba(201, 162, 75, .22), transparent 72%),
-                radial-gradient(52% 44% at 86% 88%, rgba(201, 162, 75, .18), transparent 74%),
-                linear-gradient(180deg, rgba(14, 14, 16, .87) 0%, rgba(23, 23, 27, .80) 48%, rgba(12, 12, 14, .92) 100%);
+                radial-gradient(46% 38% at 16% 14%, rgba(255, 255, 255, 0.08), transparent 72%),
+                radial-gradient(52% 44% at 86% 88%, rgba(255, 255, 255, 0.08), transparent 74%),
+                linear-gradient(180deg, rgba(14, 14, 14, .87) 0%, rgba(23, 23, 23, .80) 48%, rgba(12, 12, 12, .92) 100%);
         }
         /* Borde morado fluorescente + cristal violeta oscuro, como las tarjetas de planes */
         .frm-neon {
-            background: rgba(14, 11, 26, .6);
-            border: 2px solid rgba(201, 162, 75, .85);
+            background: rgba(14, 14, 14, .6);
+            border: 2px solid rgba(255, 194, 14, 0.3);
             box-shadow:
-                0 0 0 1px rgba(201, 162, 75, .26),
-                0 0 20px rgba(201, 162, 75, .38),
-                0 0 46px rgba(201, 162, 75, .5),
+                0 0 0 1px rgba(255, 194, 14, 0.22),
+                0 0 20px rgba(255, 194, 14, 0.22),
+                0 0 46px rgba(255, 194, 14, 0.22),
                 0 14px 44px rgba(0, 0, 0, .35);
         }
         .frm-neon:hover {
-            border-color: rgba(197, 184, 255, .95);
+            border-color: rgba(255, 194, 14, 0.3);
             box-shadow:
-                0 0 0 1px rgba(201, 162, 75, .35),
-                0 0 26px rgba(201, 162, 75, .5),
-                0 0 58px rgba(201, 162, 75, .62),
+                0 0 0 1px rgba(255, 194, 14, 0.22),
+                0 0 26px rgba(255, 194, 14, 0.22),
+                0 0 58px rgba(255, 194, 14, 0.22),
                 0 14px 44px rgba(0, 0, 0, .35);
         }
 
@@ -850,20 +861,20 @@
         .frm-eyebrow {
             display: inline-flex; align-items: center; gap: 12px;
             font-size: .72rem; font-weight: 600; letter-spacing: .24em;
-            text-transform: uppercase; color: #C9A24B;
+            text-transform: uppercase; color: #FFC20E;
         }
         .frm-eyebrow::before, .frm-eyebrow::after {
-            content: ""; width: 26px; height: 1px; background: #C9A24B; opacity: .6;
+            content: ""; width: 26px; height: 1px; background: #FFC20E; opacity: .6;
         }
         .frm-title {
             font-family: "Playfair Display", Georgia, serif;
             font-size: clamp(2rem, 4.2vw, 3.1rem);
             line-height: 1.08; letter-spacing: -.02em;
-            color: #F6EFE4;
+            color: #FFFFFF;
             margin: 14px 0 10px;
         }
         .frm-lead {
-            color: #D8D2C7; font-size: .98rem; line-height: 1.6;
+            color: #DADADA; font-size: .98rem; line-height: 1.6;
             margin: 0 auto 36px;
         }
 
@@ -877,18 +888,18 @@
             padding: 16px 22px;
             border-radius: 12px;
             background: rgba(255, 255, 255, .06);
-            border: 1px solid rgba(201, 162, 75, .35);
-            color: #F6EFE4;
+            border: 1px solid rgba(255, 194, 14, 0.3);
+            color: #FFFFFF;
             font-family: "Plus Jakarta Sans", system-ui, sans-serif;
             font-size: .95rem;
             outline: none;
             transition: border-color .35s var(--frm-ease), box-shadow .35s var(--frm-ease), background .35s;
         }
-        .frm-field::placeholder { color: #A8A39B; }
+        .frm-field::placeholder { color: #B3B3B3; }
         .frm-field:focus {
-            border-color: rgba(201, 162, 75, .8);
+            border-color: rgba(255, 194, 14, 0.3);
             background: rgba(255, 255, 255, .09);
-            box-shadow: 0 0 0 3px rgba(201, 162, 75, .3), 0 0 18px rgba(201, 162, 75, .25);
+            box-shadow: 0 0 0 3px rgba(255, 194, 14, 0.22), 0 0 18px rgba(255, 194, 14, 0.22);
         }
         .frm-area { resize: vertical; min-height: 140px; }
 
@@ -898,9 +909,9 @@
             width: 100%;
             padding: 16px 26px;
             border-radius: 12px;
-            background: #C8262B;
-            border: 1px solid #C8262B;
-            color: #fff;
+            background: #FFFFFF;
+            border: 1px solid #FFFFFF;
+            color: #0E0E0E;
             font-family: "Plus Jakarta Sans", system-ui, sans-serif;
             font-weight: 700;
             font-size: 1rem;
@@ -909,42 +920,43 @@
             transition: background .35s var(--frm-ease), box-shadow .35s var(--frm-ease), transform .35s var(--frm-ease);
         }
         .frm-btn:hover {
-            background: #A81F24;
-            box-shadow: 0 14px 30px -10px rgba(200, 38, 43, .75);
+            background: #F2F2F2;
+            border-color: #FFC20E;
+            box-shadow: 0 14px 30px -10px rgba(255, 194, 14, 0.22);
             transform: translateY(-2px);
         }
         .frm-btn:focus-visible {
-            outline: 2px solid #C9A24B;
+            outline: 2px solid #FFC20E;
             outline-offset: 4px;
         }
 
         /* ===== Paleta editorial: tinta / grafito / crema / dorado / rojo ===== */
-        .thm-body { background: #0E0E10; color: #F6EFE4; }
-        .thm-cream { color: #F6EFE4; }
-        .thm-soft { color: #D8D2C7; }
-        .thm-ink { color: #0E0E10; }
-        .thm-warm { color: #A8A39B; }
+        .thm-body { background: #0E0E0E; color: #FFFFFF; }
+        .thm-cream { color: #FFFFFF; }
+        .thm-soft { color: #DADADA; }
+        .thm-ink { color: #0E0E0E; }
+        .thm-warm { color: #B3B3B3; }
         .thm-foot {
-            background: #E6E4E1;
-            color: #0E0E10;
-            border-top: 1px solid rgba(14, 14, 16, .14);
+            background: #F2F2F2;
+            color: #0E0E0E;
+            border-top: 1px solid rgba(14, 14, 14, .14);
         }
         .thm-foot-link {
-            color: #6E6963;
+            color: #666666;
             text-decoration: none;
             transition: color .3s ease;
         }
-        .thm-foot-link:hover { color: #C8262B; }
+        .thm-foot-link:hover { color: #FFC20E; }
 
         /* ===== Footer editorial (prefijo ftr-) ===== */
         .ftr {
             position: relative;
             overflow: hidden;
             background:
-                radial-gradient(56% 90% at 50% -18%, rgba(201, 162, 75, .10), transparent 62%),
-                linear-gradient(180deg, #111113 0%, #0E0E10 46%);
-            border-top: 1px solid rgba(201, 162, 75, .28);
-            color: #F6EFE4;
+                radial-gradient(56% 90% at 50% -18%, rgba(255, 255, 255, 0.08), transparent 62%),
+                linear-gradient(180deg, #111111 0%, #0E0E0E 46%);
+            border-top: 1px solid rgba(255, 194, 14, 0.28);
+            color: #FFFFFF;
             font-family: "Plus Jakarta Sans", system-ui, sans-serif;
         }
         .ftr-water {
@@ -955,7 +967,7 @@
             font-size: 24vw;
             line-height: .78;
             letter-spacing: -.04em;
-            color: rgba(201, 162, 75, .055);
+            color: rgba(255, 255, 255, 0.055);
             pointer-events: none;
             user-select: none;
         }
@@ -973,7 +985,7 @@
             height: 46px; width: auto;
         }
         .ftr-tag {
-            color: #A8A39B;
+            color: #B3B3B3;
             font-size: .92rem;
             line-height: 1.75;
             max-width: 34ch;
@@ -984,14 +996,14 @@
             font-weight: 600;
             letter-spacing: .24em;
             text-transform: uppercase;
-            color: #C9A24B;
+            color: #FFC20E;
             margin: 4px 0 14px;
         }
         .ftr-col a {
             display: block;
             width: fit-content;
             position: relative;
-            color: #D8D2C7;
+            color: #DADADA;
             text-decoration: none;
             font-size: .93rem;
             padding: 5px 0;
@@ -1002,16 +1014,16 @@
             position: absolute;
             left: 0; bottom: 2px;
             width: 100%; height: 1px;
-            background: #C9A24B;
+            background: #FFC20E;
             transform: scaleX(0);
             transform-origin: right;
             transition: transform .45s cubic-bezier(.22, 1, .36, 1);
         }
-        .ftr-col a:hover { color: #F6EFE4; }
+        .ftr-col a:hover { color: #FFFFFF; }
         .ftr-col a:hover::after { transform: scaleX(1); transform-origin: left; }
         .ftr-plane {
             display: block;
-            color: #A8A39B;
+            color: #B3B3B3;
             font-size: .9rem;
             padding-top: 10px;
         }
@@ -1020,8 +1032,8 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: #C8262B;
-            color: #fff;
+            background: #FFFFFF;
+            color: #0E0E0E;
             font-size: .92rem;
             font-weight: 600;
             padding: 12px 20px;
@@ -1030,15 +1042,15 @@
             transition: background .35s ease, transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease;
         }
         .ftr-cta:hover {
-            background: #A81F24;
+            background: #F2F2F2;
             transform: translateY(-2px);
-            box-shadow: 0 12px 26px -10px rgba(200, 38, 43, .8);
+            box-shadow: 0 12px 26px -10px rgba(255, 194, 14, 0.22);
         }
         .ftr-cta-arrow { transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
         .ftr-cta:hover .ftr-cta-arrow { transform: translateX(4px); }
         .ftr-bar {
             position: relative;
-            border-top: 1px solid rgba(246, 239, 228, .09);
+            border-top: 1px solid rgba(255, 255, 255, .09);
             max-width: 1160px;
             margin: 0 auto;
             padding: 20px 28px 30px;
@@ -1047,15 +1059,15 @@
             gap: 12px;
             align-items: center;
             justify-content: space-between;
-            color: #A8A39B;
+            color: #B3B3B3;
             font-size: .85rem;
         }
         .ftr-top {
-            color: #D8D2C7;
+            color: #DADADA;
             text-decoration: none;
             transition: color .3s ease;
         }
-        .ftr-top:hover { color: #C9A24B; }
+        .ftr-top:hover { color: #FFC20E; }
         @media (max-width: 860px) {
             .ftr-inner { grid-template-columns: 1fr; gap: 36px; }
             .ftr-bar { justify-content: center; text-align: center; }
@@ -1102,8 +1114,8 @@
             padding: 9px;
             border: 3px solid rgba(255,255,255,.32);
             border-radius: 42px;
-            background: #0e0e10;
-            box-shadow: 0 28px 70px rgba(0,0,0,.42), 0 0 0 1px rgba(201,162,75,.35);
+            background: #0E0E0E;
+            box-shadow: 0 28px 70px rgba(0,0,0,.42), 0 0 0 1px rgba(255, 194, 14, 0.22);
         }
         .hero-phone::before {
             content: "";
@@ -1172,7 +1184,7 @@
             transition: transform .3s ease, background .3s ease;
         }
         .hero-phone-button:hover { transform: scale(1.1); background: rgba(255,255,255,.3); }
-        .hero-phone-button.like { background: #C8262B; }
+        .hero-phone-button.like { background: #FFC20E; }
         .hero-phone-button.home { color: #111; background: #fff; }
         .hero-phone-button svg { width: 18px; height: 18px; fill: currentColor; }
         .hero-phone-details {
@@ -1187,7 +1199,7 @@
         .hero-phone-tags span { padding: 4px 7px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(255,255,255,.15); font-size: .55rem; }
         .hero-phone-friends { display: flex; align-items: end; gap: 4px; }
         .hero-phone-friends button { padding: 0; border: 2px solid rgba(255,255,255,.45); border-radius: 50%; overflow: hidden; background: #444; cursor: pointer; }
-        .hero-phone-friends button.active { width: 43px; height: 43px; border-color: #C8262B; }
+        .hero-phone-friends button.active { width: 43px; height: 43px; border-color: #FFC20E; }
         .hero-phone-friends button:not(.active) { width: 32px; height: 32px; }
         .hero-phone-friends img { width: 100%; height: 100%; object-fit: cover; }
         .hero-phone-tabs {
@@ -1202,7 +1214,7 @@
             backdrop-filter: blur(12px);
         }
         .hero-phone-tabs button { padding: 4px; border: 0; color: rgba(255,255,255,.55); background: transparent; cursor: pointer; }
-        .hero-phone-tabs button.active { color: #C8262B; }
+        .hero-phone-tabs button.active { color: #FFC20E; }
         .hero-phone-tabs svg { width: 19px; height: 19px; }
         .hero-phone-notice {
             position: absolute;
@@ -1212,7 +1224,7 @@
             padding: 8px 13px;
             border-radius: 999px;
             color: #fff;
-            background: #C8262B;
+            background: #FFC20E;
             font-size: .7rem;
             font-weight: 600;
             white-space: nowrap;
@@ -1236,7 +1248,7 @@
         }
     </style>
 
-        <!-- funisidad para suvir al cloudflare -->
+        <!-- Configuración para publicar en Cloudflare -->
 
     </head>
     <body class="font-sans antialiased thm-body">
@@ -1244,8 +1256,8 @@
         <!-- navegador -->
         <header class="nav" id="nav">
             <nav class="nav-inner" aria-label="Principal">
-                <a href="#inicio" class="logo" aria-label="VM Photos Media">
-                    <img class="logo-image" src="recursos/VM/logo-vm-firma-blanca.png" alt="Firma Vm - VM Photos Media">
+                <a href="#inicio" class="logo" aria-label="VM Photosmedia">
+                    <img class="logo-image" src="recursos/VM/logo-vm-firma-blanca.png" alt="Firma de VM Photosmedia">
                 </a>
 
                 <ul class="links" id="links">
@@ -1262,17 +1274,17 @@
             </nav>
         </header>
 
-        <!-- inicio de la paguina -->
+        <!-- Inicio de la página -->
         <section id="inicio" class="hero-particles-section relative min-h-[90vh] md:min-h-[100vh] flex items-center">
 
                 <!-- VenomBeam (ScrollX UI) en morado -->
                 <div class="inset-0 z-0 overflow-hidden venom-bg" aria-hidden="true">
                     <canvas id="venom-beam" class="venom-canvas"></canvas>
                     <div class="venom-shade"></div>
-                    <div class="venom-dot" style="top: 20%; left: 10%; width: 8px; height: 8px; background: #C9A24B; animation-delay: 0s;"></div>
-                    <div class="venom-dot" style="top: 40%; right: 20%; width: 5px; height: 5px; background: #8A6A2F; opacity: .4; animation-delay: .8s;"></div>
-                    <div class="venom-dot" style="bottom: 32%; left: 25%; width: 6px; height: 6px; background: #E0BE6A; opacity: .5; animation-delay: 1.3s;"></div>
-                    <div class="venom-dot" style="bottom: 20%; right: 33%; width: 4px; height: 4px; background: #C9A24B; opacity: .3; animation-delay: 1.8s;"></div>
+                    <div class="venom-dot" style="top: 20%; left: 10%; width: 8px; height: 8px; background: #FFC20E; animation-delay: 0s;"></div>
+                    <div class="venom-dot" style="top: 40%; right: 20%; width: 5px; height: 5px; background: #FFC20E; opacity: .4; animation-delay: .8s;"></div>
+                    <div class="venom-dot" style="bottom: 32%; left: 25%; width: 6px; height: 6px; background: #FFC20E; opacity: .5; animation-delay: 1.3s;"></div>
+                    <div class="venom-dot" style="bottom: 20%; right: 33%; width: 4px; height: 4px; background: #FFC20E; opacity: .3; animation-delay: 1.8s;"></div>
                 </div>
                 
 
@@ -1332,7 +1344,7 @@
 
                 <div class="svc-head">
                     <span class="svc-eyebrow svc-reveal">Lo que hacemos</span>
-                    <h2 class="svc-reveal" style="--d:.08s">Nuestros Servicios</h2>
+                    <h2 class="svc-reveal" style="--d:.08s">Nuestros servicios</h2>
                     <p class="svc-lead svc-reveal" style="--d:.16s">Estrategia, imagen y producción en un solo equipo, para que tu marca se vea y se comunique con coherencia.</p>
                 </div>
 
@@ -1345,8 +1357,8 @@
                         <div class="svc-sub">
                             <h4>Contenido de valor y estrategia</h4>
                             <ul>
-                                <li>¿Sabías que…? datos relacionados con tu negocio</li>
-                                <li>Datos importantes y tips útiles para tu audiencia</li>
+                                <li>¿Sabías que…? Datos relacionados con tu negocio</li>
+                                <li>Datos importantes y consejos útiles para tu audiencia</li>
                                 <li>Contenido pensado para atraer al cliente ideal y generar confianza</li>
                             </ul>
                         </div>
@@ -1442,7 +1454,7 @@
 
                 <div class="pln-head pln-reveal">
                     <span class="pln-eyebrow">Elige tu camino</span>
-                    <h2>Nuestros Planes</h2>
+                    <h2>Nuestros planes</h2>
                     <p class="pln-lead">Soluciones pensadas para cada etapa de tu marca.</p>
                 </div>
 
@@ -1451,27 +1463,27 @@
                     <!-- Plan 1 -->
                     <article class="pln-card pln-reveal" style="--d:.25s">
                         <div class="pln-icon"><svg width="22" height="22"><use href="#pln-spark"/></svg></div>
-                        <h3>Gestión de Redes (Full)</h3>
+                        <h3>Gestión de redes (Full)</h3>
                         <ul class="pln-list">
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>Gestión completa de redes (Instagram, Facebook y TikTok)</li>
-                            <li><svg width="20" height="20"><use href="#pln-check"/></svg>6 posts para feed</li>
+                            <li><svg width="20" height="20"><use href="#pln-check"/></svg>6 posts para el feed</li>
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>6 reels editados</li>
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>6 fotos profesionales</li>
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>Dirección creativa y guiones</li>
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>Contenido estratégico y educativo</li>
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>Diseño e identidad visual</li>
-                            <li><svg width="20" height="20"><use href="#pln-check"/></svg>Campañas en Meta Ads (según inversión del cliente)</li>
+                            <li><svg width="20" height="20"><use href="#pln-check"/></svg>Campañas en Meta Ads (según la inversión del cliente)</li>
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>Asesoría creativa continua</li>
-                            <li><svg width="20" height="20"><use href="#pln-check"/></svg>1–2 visitas mensuales para creación de contenido</li>
+                            <li><svg width="20" height="20"><use href="#pln-check"/></svg>1–2 visitas mensuales para la creación de contenido</li>
                         </ul>
-                        <a href="https://wa.me/50763202417?text=Hola%2C%20me%20interesa%20cotizar%20el%20plan%20Gesti%C3%B3n%20de%20Redes%20(Full).%20Busco%20gesti%C3%B3n%20de%20Instagram%2C%20Facebook%20y%20TikTok%20con%20contenido%20profesional.%20%C2%BFPodr%C3%ADan%20enviarme%20precios%20y%20detalles%20del%20plan%3F" class="pln-btn" target="_blank" rel="noopener noreferrer" aria-label="Cotizar el plan Gestión de Redes (Full) por WhatsApp">Cotiza precios <svg width="16" height="16"><use href="#pln-arrow"/></svg></a>
+                        <a href="https://wa.me/50763202417?text=Hola%2C%20me%20interesa%20cotizar%20el%20plan%20Gesti%C3%B3n%20de%20redes%20(Full).%20Busco%20gesti%C3%B3n%20de%20Instagram%2C%20Facebook%20y%20TikTok%20con%20contenido%20profesional.%20%C2%BFPodr%C3%ADan%20enviarme%20precios%20y%20detalles%20del%20plan%3F" class="pln-btn" target="_blank" rel="noopener noreferrer" aria-label="Cotizar el plan Gestión de redes (Full) por WhatsApp">Cotiza precios <svg width="16" height="16"><use href="#pln-arrow"/></svg></a>
                     </article>
 
                     <!-- Plan 2 -->
                     <article class="pln-card pln-featured pln-reveal" style="--d:.05s">
                         <span class="pln-badge">Más completo</span>
                         <div class="pln-icon"><svg width="22" height="22"><use href="#pln-spark"/></svg></div>
-                        <h3>Creación de Contenido</h3>
+                        <h3>Creación de contenido</h3>
                         <ul class="pln-list">
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>Producción de fotos y videos</li>
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>Contenido editado y listo para publicar</li>
@@ -1480,7 +1492,7 @@
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>Fotografía profesional</li>
                             <li><svg width="20" height="20"><use href="#pln-check"/></svg>Sin manejo de redes sociales</li>
                         </ul>
-                        <a href="https://wa.me/50763202417?text=Hola%2C%20me%20interesa%20cotizar%20el%20plan%20Creaci%C3%B3n%20de%20Contenido.%20Necesito%20fotos%2C%20videos%20y%20reels%20para%20mi%20marca%2C%20sin%20manejo%20de%20redes%20sociales.%20%C2%BFPodr%C3%ADan%20enviarme%20precios%20y%20detalles%20del%20plan%3F" class="pln-btn" target="_blank" rel="noopener noreferrer" aria-label="Cotizar el plan Creación de Contenido por WhatsApp">Cotiza precios <svg width="16" height="16"><use href="#pln-arrow"/></svg></a>
+                        <a href="https://wa.me/50763202417?text=Hola%2C%20me%20interesa%20cotizar%20el%20plan%20Creaci%C3%B3n%20de%20contenido.%20Necesito%20fotos%2C%20videos%20y%20reels%20para%20mi%20marca%2C%20sin%20manejo%20de%20redes%20sociales.%20%C2%BFPodr%C3%ADan%20enviarme%20precios%20y%20detalles%20del%20plan%3F" class="pln-btn" target="_blank" rel="noopener noreferrer" aria-label="Cotizar el plan Creación de contenido por WhatsApp">Cotiza precios <svg width="16" height="16"><use href="#pln-arrow"/></svg></a>
                     </article>
 
                     <!-- Plan 3 -->
@@ -1551,7 +1563,7 @@
         <!-- formulario para correo -->
         <section id="formulario" class="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
 
-            <img src="recursos/VM/fondo de estudio.png" alt="fondoTipoStudio" loading="lazy" decoding="async" width="1536" height="1024"
+            <img src="recursos/VM/fondo de estudio.png" alt="Fondo de estudio" loading="lazy" decoding="async" width="1536" height="1024"
                         class="absolute inset-0 w-full h-full object-cover z-0">
 
             <!-- velo violeta: integra la foto a la paleta oscura de la página -->
@@ -1646,10 +1658,10 @@
                 };
 
                 // paleta dorada
-                const dotColor = '201, 162, 75';  // núcleo del glow (dorado)
-                const midColor = '172, 133, 54';  // medio del glow
-                const edgeColor = '112, 86, 27';  // borde exterior
-                const linkColor = '161, 129, 51'; // líneas entre partículas
+                const dotColor = '255, 255, 255';
+                const midColor = '224, 224, 224';
+                const edgeColor = '180, 180, 180';
+                const linkColor = '255, 194, 14'; // líneas entre partículas
 
                 const particles = [];
                 const mouse = { x: 0, y: 0 };

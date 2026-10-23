@@ -5,10 +5,10 @@
        theme: {                                                                               
          extend: {                                                                            
            colors: {                                                                          
-             primary: "#1D1D1F",                                                              
-             secondary: "#1D1D1F",                                                            
-             "background-light": "#E5E7EB",                                                   
-             "background-dark": "#0F172A",                                                    
+             primary: "#FFC20E",
+             secondary: "#FFFFFF",
+             "background-light": "#F5F5F5",
+             "background-dark": "#0E0E0E",
            },                                                                                 
            fontFamily: {                                                                      
              display: ["'Playfair Display'", "serif"],                                        
