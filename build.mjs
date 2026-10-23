@@ -40,8 +40,8 @@ fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(DIST, { recursive: true });
 
 // 3. Copiar archivos de la raiz
-const ROOT_FILES = ["index.html", "quienes somos.html", "informacion de la web.txt"];
-const ROOT_DIRS = ["css", "recursos"];
+const ROOT_FILES = ["index.html", "quienes somos.html"];
+const ROOT_DIRS = ["css", "js", "recursos"];
 
 for (const f of ROOT_FILES) {
   const src = path.join(ROOT, f);
