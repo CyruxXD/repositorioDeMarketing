@@ -28,6 +28,8 @@
     const desktop = matchMedia('(min-width: 768px)');
     const nearby = new Set();
     const visible = new Set();
+    const pendingPlayback = new WeakSet();
+    const blockedPlayback = new Set();
 
     function updateVideo(video) {
         const breakpoint = video.dataset.breakpoint;
@@ -45,7 +47,15 @@
         }
 
         if (visible.has(video)) {
-            video.play()?.catch(() => {});
+            if (!video.paused || pendingPlayback.has(video)) return;
+            video.muted = true;
+            pendingPlayback.add(video);
+            Promise.resolve(video.play())
+                .then(() => blockedPlayback.delete(video))
+                .catch((error) => {
+                    if (error.name === 'NotAllowedError') blockedPlayback.add(video);
+                })
+                .finally(() => pendingPlayback.delete(video));
         } else {
             video.pause();
         }
@@ -56,8 +66,10 @@
     }
 
     videos.forEach((video) => {
+        video.defaultMuted = true;
         video.muted = true;
         video.playsInline = true;
+        video.addEventListener('canplay', () => updateVideo(video));
     });
 
     if ('IntersectionObserver' in window) {
@@ -89,4 +101,13 @@
 
     desktop.addEventListener('change', updateVideos);
     document.addEventListener('visibilitychange', updateVideos);
+    window.addEventListener('pageshow', updateVideos);
+    window.addEventListener('focus', updateVideos);
+
+    function retryBlockedPlayback(event) {
+        if (event.isTrusted) blockedPlayback.forEach(updateVideo);
+    }
+
+    document.addEventListener('pointerdown', retryBlockedPlayback, { capture: true, passive: true });
+    document.addEventListener('keydown', retryBlockedPlayback, { capture: true });
 })();
